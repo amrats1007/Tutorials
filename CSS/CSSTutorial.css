@@ -1,0 +1,1859 @@
+/*
+
+> CSS: Cascading Style Sheets
+	>> a cascade is simply like a waterfall. You have water at one level that then drops down through a waterfall into another level. Because the way that the style is applied cascades like a waterfall. We start from the most general all the way down to the most specific styling requirements. Imagine if you have a cascade where there is a pool at the top and then there is another one at the bottom. If we think about how the rule gets applied, then the browser is going to look at the water level. Imagine if this rule gets applied first, and then as the water falls down the cascade, it sees another rule that's applying to the same element. Then you will see this style, number one being applied. So multiple styles can be applied to the same thing, but because of the order of importance, the one that is the most important once you've finished the cascade is the one the user actually sees on screen.
+	>> A style sheet is a type of language similar to how we had the HTML, which is a markup language. That's what the ML part of stands for. We have the style sheet, which is what the SS part stands for, and this is a language that allows us to specify how things should look in our website. And there are many different types of stylesheets languages. The one that's most important is the cascading style sheets. But there's also others like Sass, which stands for syntactically awesome style sheet and Less, which stands for Leaner SS and many, many others.
+
+> Box Model: every single HTML element onscreen is just treated as a box by CSS
+	>> margin: space between border and other elements
+	>> border: border of element
+	>> padding: space between border and content
+	>> content width and height
+
+> CSS preferred kebab-case in naming identifiers
+
+> CSS has 147 predefined color
+
+> not all element properties inherited from parent element
+
+> use comments in every section and use start and end comment to be compatible with html file
+
+> in shorthand code you do not have to write every value of properties
+
+> it is recommended that write properties in alphabetical order
+
+> A CSS rule-set is made up of a selector and a declaration block
+	selector
+	{																				|
+		property: value; => declaration/rule  |
+		property: value; => declaration/rule  |=> declaration block
+		property: value; => declaration/rule  |
+	}																				|
+
+> CSS Selectors
+	>> Universal Selector ( * )
+	>> Type Selector ( p )
+	>> Class Selector ( .class )
+	>> ID Selector ( #id )
+	>> Attribute Selector ( [attribute] )
+	>> Pseudo-class Selector ( :hover )
+	>> Pseudo-element Selector ( ::first-line )
+	>> Combinator Selector ( p > a )
+
+> Cascading Order:
+	>> Power of Style in HTML page 1. Inline Style  2. Internal Style 3. External Style(last one is most powerful)
+	>> Power of style in CSS file 1. ID - 2. Attribute 3. Class - 4. element - 5. important flag/declaration
+	>> if html element has many classes and i styled it in css with these classes by same property, the power will calculate depending on line number
+	>> important flag/declaration is most powerful style ever
+div
+{
+	color : #FFFFFF !important;
+}
+
+> inline style is useful when targeting specific element, internal style is useful when targeting specific page, external style is useful when targeting multi-pages
+
+> There are four broad categories which we look at when we're determining the overall level of importance of a css rule. And these categories are position, specificity, type and importance.
+cascade goes from top to bottom
+	>> [[4]] Position: inline style - internal style - external style -- the lower down the file, the rule is, the more. More important
+		li {
+			color: red; 3
+			color: green; 2
+		}
+		li {
+			color: blue; 1 => is more important because it is lower in the file
+		}
+	>> [[3]] Specificity: ID - Attribute - Class - Element -- specificity refers to how specific a selector is in terms of the elements that you're applying the CSS rule to.
+		li{color: red;} 4
+		.class{color: green;} 3
+		li[value]{color: blue;} 2
+		#id{color: yellow;} 1 => is more important because it is more specific
+	>> [[2]] Type: inline style - internal style - external style
+		<link rel="stylesheet" href="style.css"> 3
+		<style> </style> 2
+		<li style="color: red;"> 1 => is more important because it is inline style
+	>> [[1]] Importance: important flag/declaration
+		div {
+			color : #FFFFFF !important; => is more important because it has important flag
+			color : #000000;
+		}
+
+> differences between units -- default font-size = 16px
+	>> PX = Pixel = 1/96 of 1 inch
+	>> PT = Point = 1/72 of 1 inch - 1pt is bigger than 1px
+	>> Em = Time = 1 time from direct parent tag (100% = 1em)
+	>> Rem = Route Time = 1 time from <html> tag
+	>> % = Percentage = depending on direct parent tag (same as em -- 100% = 1em)
+	>> vw = Viewport Width = 1% from viewport width
+	>> vh = Viewport Height = 1% from viewport height
+	>> vmin = Viewport Minimum = 1% from viewport minimum
+	>> vmax = Viewport Maximum = 1% from viewport maximum
+	>> cm = Centimeter = 1/2.54 of 1 inch
+	>> mm = Millimeter = 1/25.4 of 1 inch
+	>> in = Inch
+	>> pc = Pica = 1/6 of 1 inch
+	>> q = Quarter = 1/40 of 1 inch
+	>> ch = Character = 1 character width
+	>> w = Word = 1 word width
+	>> ex = x-height
+
+> css vendor prefixes
+	>> -webkit- => chrome / safari / ios / android
+	>> -moz- => firefox
+	>> -o- => opera
+	>> -ms- => IE
+
+> responsive layout
+	>> @media
+	>> Flexbox => 1D layout
+	>> Grid => 2D layout
+	>> External Framework => Bootstrap / Foundation / Materialize / Semantic UI / Bulma / Tailwind CSS / etc.
+
+> old layout techniques
+	>> Position
+	>> Display
+	>> Table
+
+*/
+
+/* CSS Template Info */
+/*
+* Template Name: Learning CSS
+* Template Version: 1.2.3
+* Template URL: http://www.mytemplate.com/Template+Name
+* Contact Me: amrats1007@gmail.com
+*/
+
+/*
+> CSS Global Values
+
+	>> inherit
+	>> initial
+	>> unset
+		- If Inherit => inherit
+		- If Not => initial
+	>> revert -- CSS Level [4]
+	>> all property
+*/
+div {
+  color: inherit; /* inherit from parent */
+  display: initial; /* initial value (default value) - inline */
+  font-size: unset; /* inherit or initial */
+  border: revert; /* reset element style to style agent */
+
+  all: unset; /* reset all properties */
+}
+
+/* Create Your Framework */
+/*
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CSS</title>
+    <link rel="stylesheet" href="css/master.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="parent">
+      <div class="center-position circle-100 center-flex">Child</div>
+    </div>
+    <div class="product center-position circle-200 center-flex">Product</div>
+  </body>
+</html>
+*/
+*,
+*:after,
+*:before {
+  font-family: sans-serif;
+  box-sizing: border-box;
+  perspective: 1000px;
+  perspective-origin: center;
+  transform-style: preserve-3d;
+  transform-origin: center;
+}
+.container {
+  width: 1170px;
+  margin: auto;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+.parent {
+  position: relative;
+  background-color: #eee;
+  margin: 20px auto;
+  width: 1200px;
+  height: 200px;
+}
+.parent div {
+  background-color: green;
+  color: white;
+}
+.product {
+  background-color: red;
+  color: white;
+}
+.center-position {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.circle-100 {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.circle-200 {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+.center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.border-r {
+  border-radius: 4px;
+}
+
+/**********************************************************************************************************************/
+
+/* Background: color | image | repeat | attachment | position */
+.background {
+  background-color: red; /* color name - hex code - rgb/rgba - transparent */
+
+  background-image: url("#.bmp"); /* image: none(DV) */
+
+  background-repeat: no-repeat; /* repeat[xy](DV) - no-repeat - repeat-x - repeat-y */
+
+  background-attachment: fixed; /* scroll(DV) - fixed */
+
+  background-position: right center; /* 0 0[xy](DV) - position name/position percent */
+}
+
+/* shorthand code: background: color | image | repeat | attachment | position */
+.background {
+  background: rgb(255, 0, 0) url("#.bmp") repeat-y fixed 50% 75%;
+}
+
+/* background-size */
+.background {
+  background-size: 400px 300px; /* auto auto(DV) - width height -- scale background image */
+
+  background-size: 100%; /* if i write one value it will be width only */
+
+  background-size: cover; /* perfect value(auto scale) */
+
+  background-size: contain;
+}
+/* background-clip - painting area */
+.background {
+  background-clip: border-box; /* start background-color from border */
+
+  background-clip: padding-box; /* start background-color from padding */
+
+  background-clip: content-box; /* start background-color from content */
+}
+/* background-origin - image area - work perfectly with background repeat: no-repeat */
+.background {
+  background-origin: border-box; /* start background-image from border */
+
+  background-origin: padding-box; /* start background-image from padding */
+
+  background-origin: content-box; /* start background-image from content */
+}
+
+/**********************************************************************************************************************/
+
+/*
+Text Style
+
+color
+letter-spacing
+word-spacing
+line-height
+white-space => Spaces, tabs, and line breaks are called whitespace
+direction
+text-align
+text-decoration
+text-transform
+text-indent
+*/
+.text {
+  color: #ff0000; /* hex code - 00 to ff */
+  color: rgba(
+    255,
+    0,
+    0,
+    0.5
+  ); /* rgb/rgba - a for alpha channel(opacity) - 0 to 255 */
+  color: red; /* color name - black(DV) */
+  color: transparent; /* transparent color */
+
+  letter-spacing: -2px; /* normal(DV) -- takes negative value */
+
+  word-spacing: 10px; /* normal(DV) */
+
+  line-height: 50rem; /* normal(DV) */
+
+  line-height: 1; /* 1 = 100% */
+
+  line-height: 2; /* 2 times from font-size */
+
+  white-space: nowrap; /* text wrapping: normal(DV) -- work with text only not words */
+
+  direction: rtl; /* ltr/rtl Depending on page language*/
+
+  text-align: justify; /* DV as page direction (ltr/rtl) */
+
+  text-decoration: line-through; /* none(DV) - underline - overline - line-through */
+
+  text-transform: uppercase; /* none(DV) - uppercase - lowercase - capitalize */
+
+  text-indent: 10px; /* 0(DV) -- take negative value */
+}
+
+/* text-align center inside the container, or the parent element, will center everything inside that doesn't have a width set. Now if it is a block element and it has a width set, then you're going to have to center it using this auto value in the margin. */
+
+/* vertical align */
+.text {
+  vertical-align: middle;
+}
+
+/* word wrap => normal(DV) -- work with words only not text */
+.word {
+  word-wrap: break-word;
+}
+
+/* word break */
+.word {
+  word-break: break-all; /* normal(DV) - break-all - keep-all */
+}
+
+/* text overflow => clip(DV) | ellipsis -- ellipsis puts " ... " after sentence -- work with overflow -- work with text only not words */
+.text {
+  text-overflow: ellipsis;
+}
+
+/**********************************************************************************************************************/
+
+/* Font: style | weight | size | family */
+.font {
+  font-style: oblique; /* normal(DV) */
+
+  font-weight: 600; /* normal(DV) - bold - bolder - lighter - 100 to 900 -- 400=normal - 700=bold */
+
+  font-size: x-large; /* medium(DV)=16px=100%=1em / xx-small/x-small/small/large/x-large/xx-large/smaller/larger -- (smaller -100/larger +100) is relative to the parent */
+
+  font-family: "Cooper Black", sans-serif; /* (DV)depend on browser (Web Safe Fonts) -- sans-serif: full back system or backup generic type */
+
+  font-variant: small-caps; /* normal(DV) - small-caps */
+}
+
+/* shorthand code: font: style - weigh - size/line-height - family */
+.font {
+  font: italic bold larger/2em "Cooper Black", sans-serif;
+}
+
+/* font-face => https://www.w3schools.com/cssref/css_websafe_fonts.asp */
+@font-face {
+  font-family: Sofia-Regular;
+  src: url("#.ttf");
+  src: url("#.eot");
+  src: url("#.otf");
+}
+
+/*
+font families:
+
+serif: Times New Roman, Georgia, serif
+sans-serif: Arial, Helvetica, sans-serif
+cursive: Comic Sans MS, cursive, sans-serif
+fantasy: Impact, fantasy
+monospace: Courier New, monospace
+*/
+
+/*
+font types:
+
+TTF : True type Font
+EOT : Embedded Type Font
+OTF : Open Type Font
+WOFF : Web Open Font
+WOFF2 : Web Open Font 2
+SVG : Scalable Vector Graphic
+*/
+
+/**********************************************************************************************************************/
+
+/* list Style: type | position | image */
+/* ul/ol/dl take padding and margin by default in html */
+ul {
+  margin: 0;
+  padding: 0;
+
+  list-style-type: georgian; /* disk(DV) - none - decimal(for numbers like <ol>) */
+  list-style-position: inside; /* (outside)DV - inside */
+  list-style-image: url("#.bmp"); /* replace list-style-type with image */
+}
+
+/* shorthand code: list style: type - position - image */
+ul {
+  list-style: georgian inside none;
+}
+
+/**********************************************************************************************************************/
+
+/* Clock wise direction: (1)top - (2)right - (3)bottom - (4)left */
+
+/**********************************************************************************************************************/
+
+/* Border Style:  width | style(required) | color */
+.border {
+  border-width: 2px 1px 5px 2px;
+  border-style: solid dashed inset outset; /* none(DV) */
+  border-color: black #1bc98e rgb(255, 255, 0);
+
+  border-top-width: 7px;
+  border-top-style: inset;
+  border-top-color: green;
+}
+
+/* shorthand code: border: width-style-color */
+/* shorthand code: border-direction: width-style-color */
+.border {
+  border: 2px solid #ff0000;
+  border-top: 2px hidden darkred;
+}
+
+/* border-collapse | border-spacing */
+.border {
+  border-collapse: collapse; /* Make the table borders collapse into single border */
+}
+.border {
+  border-collapse: separate;
+  border-spacing: 10px 10px; /* sets the distance between the borders of adjacent cells of table (only for the "separated borders" model) */
+}
+
+/* border image */
+.border {
+  border-image-source: url("#");
+  border-image-width: 5;
+  border-image-repeat: stretch;
+  border-image-slice: 50%;
+  border-image-outset: 5;
+}
+/* shorthand code */
+.border {
+  border-image: url("#") 5 stretch;
+}
+
+/* border radius */
+div {
+  border-radius: 10px 20% 5em 14pt; /* top-left | top-right | bottom-right | bottom-left */
+}
+div {
+  border-top-right-radius: 10% 20px; /* horizontal | vertical */
+  border-bottom-left-radius: 3px;
+}
+
+/**********************************************************************************************************************/
+
+/* margin */
+.margin {
+  margin: 10px 20px 30px 20px; /* top right bottom left */
+
+  margin: 10px 20px; /* (top-bottom) / (right-left) */
+
+  margin: 2px auto 0; /* top / right-left / bottom */
+
+  margin: 5px; /* all dirs */
+
+  margin: auto; /* to center element if have width = 0 auto */
+
+  margin: 0 auto 0 100px; /* auto for right side will make margin-right all side  */
+
+  margin: -3px; /* can take negative value */
+}
+.margin {
+  margin-bottom: 20px; /* specific dir */
+}
+
+/* vertical margin is calculated unlike horizontal margin */
+/*
+Margin Collapse
+margin collapse is happen when two or more elements are touching each other vertically
+[1] Only Vertical Margin will be Collapsed
+[2] Bigger Margin Wins
+[3] Margin Collapsing With Elements Without Anything Between
+[4] Nesting Does Not Prevent Margin Collapse, it is important that elements are touching each other vertically
+*/
+
+/**********************************************************************************************************************/
+
+/* padding -- not takes negative value */
+.padding {
+  padding: 5px; /* all dir */
+
+  padding: 10px 20px;
+
+  padding: 20px 20px 10px;
+
+  padding: 20px 10px 0 10px; /* can delete last one(left) 10px if it equal to second one 10px(right) */
+}
+.padding {
+  padding-left: 20px; /* specific dir */
+  padding-right: 10rem;
+}
+
+/**********************************************************************************************************************/
+
+/*
+Dimensions
+
+width - min-width - max-width
+height - min-height - max-height
+DV: width: auto - height: auto
+*/
+.width-height {
+  width: auto;
+  min-width: 30%;
+  max-width: 50px;
+
+  height: 30px;
+  min-height: 50%;
+  max-height: 10%;
+
+  width: fit-content;
+  width: max-content;
+  width: min-content;
+
+  height: fit-content;
+  height: max-content;
+  height: min-content;
+}
+
+/**********************************************************************************************************************/
+
+/* display properties: inline | block | inline-block | none -- none removes item and it's place from workflow */
+.display {
+  display: block; /* take up the entire width, and block everything else from being on the same line as themselves. */
+}
+.display {
+  display: inline; /* they do not block other elements from occurring on the same line, */
+}
+.display {
+  display: inline-block;
+}
+.display {
+  display: none;
+}
+
+/* inline is the initial value of all elements */
+
+/*
+inline & block & inline-block
+
+> width/height
+	inline element ignore height and width in workflow
+	inline takes only its content width and height
+	block takes full width, specific width or height to inline element will not affect
+	inline width and height is auto by default
+	inline element width and height calculated by its content only
+	<span>hello <br> world</span> => span width is auto and height is auto by default (inline element)
+> margin/padding/border
+	inline tag ignore margin and padding top and bottom
+	affect inline horizontal position only in Doc
+	affect block element position in both directions in Doc
+	inline element width and height calculated by its content only
+	inline element will not affect in other elements vertically but horizontally only
+> inline-block property
+	applies inline and block properties but do not apply full width and makes space between blocks by default
+> float property: with inline tag will convert it to block and ignore space between blocks unlike inline-block but dose not take full width with block tag, you must give it width
+> margin:"auto": not applied to inline tags
+/*
+
+/**********************************************************************************************************************/
+
+/*
+position: static | fixed | relative | absolute | sticky -- top / right / bottom / left
+
+static => DV of flow -- do not affects with directions
+fixed => loose its auto dimensions and its place in workflow, get out from its parent and move with scroll - it moves relative to the browser window
+relative => save its auto dimensions and keeps its place in workflow while moving with directions - it moves relative to its static place in workflow
+absolute => same as fixed position but do not move with scroll, move depending on relative position of the parent(ancestor) which is the closest block that has a relative layer
+
+- element with position will treated as box model normally
+- direction can take negative values
+- fixed will appear depending on the visible part of screen
+- absolute move with directions depending on its parent if has relative position but if the parent has no relative position the absolute will move depending on html page
+- relative keep its work space and move with directions depending on its place not its parent
+- relative positioning doesn't affect any other element on screen. So if I said top 50 pixels it pushes it down by 50 pixels but it doesn't affect the layout of any other element on screen.
+- relative positioning means that you're adding a margin relative to where the element should have been, but absolute position means that you're adding a margin to its parent element.
+- when you're using absolute/fixed positioning, you're actually taking the element out of the flow of the document and it's no longer considered a part of the natural flow of the document.
+- sticky => like fixed but it will stick to its place in workflow while scrolling and when it reach its place it will be fixed and will not move with scroll -- can take width and height also - must have top / right / bottom / left to work
+*/
+.parent {
+  position: relative;
+}
+.position {
+  position: absolute;
+  top: 20%;
+  left: 20px;
+  bottom: 50px;
+  right: -30%;
+}
+
+/**********************************************************************************************************************/
+
+/* z-index: auto(DV) -- -1 to make element in the last -- z-index working with position */
+div {
+  z-index: 1; /* high number is visible one */
+}
+
+/**********************************************************************************************************************/
+
+/* float: none(DV) | right | left -- float gets element out of workflow of his parent -- it is used for wrapping text around element(img) not for structure layout like flexbox, grid and other frameworks */
+.float {
+  float: left;
+  width: 25%;
+}
+.clear /* clearfix hack: must used after using float to make elements after float elements display normal -- clears any responsibility to wrap around things that are floating */ {
+  clear: both; /* if i used clear:right OR left that is meaning clear for element floating right only OR left only */
+}
+
+/* if i have elements floating in parent element, they will get out from workflow, and to resolve this we have tow methods
+but do not use min-height because the parent do not feel the children elements */
+/* 1. use clear fixing with (after) for parent element */
+.div:after {
+  content: "";
+  visibility: hidden;
+  display: block;
+  clear: both;
+}
+/* 2. use overflow property for parent element */
+.div {
+  overflow: auto; /* for parent element (auto OR hidden but auto is best) */
+}
+
+/* While Float has been extensively used in the past to create complex layouts, there are now better tools like Flexbox, Grid and Bootstrap that are less complicated and provide more predictable results. it is recommended that using Float only when wrapping text around an element and not to use it for complex layouts */
+
+/**********************************************************************************************************************/
+
+/* calc() */
+/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+		<title>CSS</title>
+		<link rel="stylesheet" href="css/master.css" />
+	</head>
+	<body>
+		<div>Product One</div>
+		<div>Product Two</div>
+		<div>Product Three</div>
+		<div>Product Four</div>
+	</body>
+</html>
+*/
+body {
+  margin: 0;
+}
+div {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  background-color: #eee;
+  float: left;
+  width: calc(94% / 5);
+  margin-left: 2%;
+}
+/*
+Content Width Is: 100%
+6 Spaces  2 * 6 => 6% From Content Width
+100% - 6% Available Space
+5 Elements The Width Is: 94% / 5
+*/
+div {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  background-color: #eee;
+  float: left;
+  width: calc((100% - 60px) / 5);
+  margin-left: 10px;
+}
+/*
+Content Width Is: 100%
+6 Spaces  10px * 6 => 60px From Content Width
+100% - 60px Available Space
+5 Elements The Width Is: (100% - 60px) / 5
+*/
+
+/**********************************************************************************************************************/
+
+/* Css Variables: global variables => :root - local variables => selector -- var (variable name, default value) */
+:root {
+  --main-color: #f00; /* global variable */
+  --padding: #0f0; /* global variable */
+}
+div {
+  color: var(--main-color, #00f);
+}
+div {
+  padding: calc(var(--padding, 10px) * 2);
+}
+div {
+  --main-color: #00f; /* local variable */
+  background-color: var(
+    --main-color,
+    #f00
+  ); /* apply local variable if exist or global variable if exist or default value */
+}
+
+/**********************************************************************************************************************/
+
+/* flexbox */
+/*
+1. parent (container) -- (display: flex / inline-flex) -- page direction (rtl / ltr) is very important -- https://codepen.io/enxaneta/full/adLPwv
+	> flex-direction: main axis -- row(DV) / row-reverse / column / column-reverse -- page direction (rtl / ltr) is very important
+	> flex-wrap: nowrap(DV) / wrap / wrap-reverse -- wrap elements if necessary -- page direction (rtl / ltr) is very important
+	> flex-flow: shorthand code for (direction / wrap)
+	> justify-content: horizontal -- flex-start(DV) / flex-end / center / space-around / space-between / space-evenly -- flex-start & flex-end (depend on page direction)
+	> align-content: vertical -- same as (justify-content), but it is scale items to real height if it worked -- work perfectly with wrap -- stretch(DV) / center / flex-start / flex-end / space-around / space-between / space-evenly
+	> align-items: vertical -- scale items to real height except [stretch] -- baseline / stretch(DV) / center / flex-start / flex-end
+*/
+.container {
+  display: flex; /* inline-flex to make flexbox(witch is block) in one row with other elements(same as inline-block) and make children takes as much as its biggest one content if column and as much as its content if row */
+
+  display: inline-flex;
+
+  flex-direction: row-reverse; /* set main axis and cross axis */
+
+  flex-wrap: wrap;
+
+  flex-flow: column wrap-reverse;
+
+  justify-content: space-evenly; /* align children horizontally -- space-evenly = space-around + space-between */
+
+  align-content: space-around; /* align children vertically */
+
+  align-items: center; /* work only with nowrap */
+}
+/*
+2. child -- take full height by default
+	> order: DV:0 -- change order of elements
+	> flex-grow: DV:0 -- increase element width by the unused space -- number is opportunity to grow -- element with no grow (0) will not grow ever
+	> flex-shrink: DV:1 -- decrease element width -- 0 = do not decrease item
+	> flex-basis: DV:auto -- determine element min/max width & height depending on parent width & height -- set width if flex-direction(main axis) is row, height if flex-direction(main axis) is column
+	> align-self: DV:auto -- override align-items for specific element
+*/
+div {
+  order: 1; /* -1 to make element in the first position */
+  flex-grow: 1; /* content < width < flex-basis < min&max-width */
+  flex-shrink: 0; /* flex box shrink children elements by default -- content < width < flex-basis < min&max-width */
+  flex-basis: 100px; /* similar to min/max width & height but flexible -- do not affects elements in a specific position like fixed and absolute -- respect max-width / max-height */
+  align-self: flex-start; /* it'll actually make this item separate from the groupthink and do its own thing */
+}
+/* child shorthand code -- flex: flex-grow / flex-shrink / flex-basis */
+div {
+  flex: 0 1 auto;
+}
+
+/**********************************************************************************************************************/
+
+/* Grid */
+/*
+1. Parent
+	> display: grid | inline-grid
+	> grid-template-columns: [Number Of Columns In] => [Px, %, auto, Repeat(), Fraction, mix] - width -- fraction is greedy, auto is shy -- auto takes as content of it, fraction try to take as big as it can
+	> grid-template-rows: [Number Of Rows In] => [Px, %, auto, Fraction, Repeat(), Mix] - height
+	> gap: [Row Gap] [Column Gap] -- space between elements -- default value is 0
+	> justify-content : horizontal
+	> align-content : vertical
+	> grid-template-areas/grid-area
+*/
+.parent {
+  display: grid;
+
+  grid-template-columns: repeat(10, 1fr);
+
+  grid-template-rows: 50px auto 50px;
+
+  grid-template-areas:
+    "logo logo nav nav nav nav nav nav nav nav"
+    "cont cont cont cont cont cont cont . side side" /* . = empty cell -- do not take space */
+    "foot foot foot foot foot foot foot foot foot foot";
+
+  grid-template-columns: minmax(200px, 600px) repeat(2, 500px); /* minmax(200px, 600px) = 200px if content is less than 200px, 600px if content is more than 600px */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(200px, 1fr)
+  ); /* auto-fill = fill empty cells with new elements - solve empty cells issue (repeat(5, 200px)) */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  ); /* auto-fit = auto-fill + remove empty cells */
+  grid-template-columns: repeat(5, 500ch); /* 500ch = 500 characters */
+
+  /* row-gap: 10px;
+  column-gap: 10px; */
+  gap: 10px 10px;
+
+  justify-content: flex-end;
+
+  align-content: first baseline;
+}
+h2 {
+  grid-area: logo;
+}
+nav {
+  grid-area: nav;
+}
+section {
+  grid-area: cont;
+}
+aside {
+  grid-area: side;
+}
+footer {
+  grid-area: foot;
+}
+/*
+2. Child
+	> grid-column: [Grid-Column-Start] [Grid-Column-End] - end not including, it is considered as a break point
+	> grid-row: [Grid-Row-Start] [Grid-Row-End]
+	> grid-area: [Grid-Row-Start] [Grid-Column-Start] [Grid-Row-End] [Grid-Column-End]
+	> order: [Number] - change order of elements
+*/
+.child {
+  /* Grid-Column-Start: 1;
+	Grid-Column-End: 3; */
+  grid-column: 1 / 3;
+  grid-column: span 4; /* using span is better than using start and end */
+  grid-column: 2 / 5; /* can makes offset before element */
+  grid-column: 2 / -1; /* -1 = last column */
+  grid-column: 2 / span 2; /* span 2 = 2 columns */
+  grid-column: 2 / -2; /* -2 = last column - 1 */
+
+  /* Grid-row-Start: 1;
+	Grid-row-End: 3; */
+  grid-row: 1 / 3;
+  grid-row: span 4; /* using span is better than using start and end */
+
+  grid-area: 1 / 1 / 3 / 3; /* grid-row-start / grid-column-start / grid-row-end / grid-column-end */
+  grid-area: 1 / 1 / span 2 / span 2;
+  grid-area: cont; /* if you use grid-area, you do not need to use grid-column/grid-row */
+
+  order: 1; /* -1 to make element in the first position */
+}
+
+/**********************************************************************************************************************/
+
+/* Filters */
+img {
+  transition: 0.3s;
+  filter: grayscale(100%);
+}
+img:hover {
+  filter: grayscale(0);
+}
+
+/**********************************************************************************************************************/
+
+/* Gradients -- linear-gradient(Direction || Angle, Color Stop 1, Color Stop 2, ....) */
+div:before {
+  background-image: linear-gradient(
+    to right,
+    /* or 90deg */ #2980b9 20%,
+    #27ae60 20%,
+    #27ae60 40%,
+    #d35400 40%,
+    /* or 90px */ #d35400 60%,
+    #8e44ad 60%,
+    #8e44ad 80%,
+    #c0392b 80%
+  );
+}
+
+/**********************************************************************************************************************/
+
+/* caret-color: change cursor color */
+/* pointer-events: disable click on element */
+input {
+  caret-color: red;
+}
+a {
+  pointer-events: none;
+}
+
+/**********************************************************************************************************************/
+
+/* overflow: visible(DV) | hidden | scroll | auto */
+.overflow {
+  width: 100px;
+  height: 100px;
+  background-color: #eeeeee;
+  padding: 10px;
+  overflow: auto;
+}
+
+/* overflow[xy] -- it is preferred to use them together */
+div {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/**********************************************************************************************************************/
+
+/* visibility: visible(DV) | hidden */
+.visibility {
+  visibility: hidden;
+}
+/* display none => lost its space in workflow / visibility: hidden => it will be hidden but still keeping its place in workflow */
+
+/**********************************************************************************************************************/
+
+/* content - none(DV) */
+/* attribute */
+.div::after {
+  content: attr(data-attr);
+}
+/* url */
+.div::after {
+  content: url("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png");
+}
+/* open quote */
+.div::after {
+  content: open-quote;
+}
+/* close quote */
+.div::after {
+  content: close-quote;
+}
+/* no open quote */
+.div::after {
+  content: no-open-quote;
+}
+/* no close quote */
+.div::after {
+  content: no-close-quote;
+}
+/* string */
+.div::after {
+  content: "text";
+}
+/* normal */
+.div::after {
+  content: normal;
+}
+/* none */
+.div::after {
+  content: none;
+}
+
+/**********************************************************************************************************************/
+
+/* counter-increment: [Counter-Name] [Number] */
+.div {
+  counter-increment: my-counter;
+}
+.div::after {
+  content: counter(my-counter);
+  color: #00f;
+  width: 8%;
+  height: 8%;
+  margin-top: 5px;
+}
+/* counters */
+.div::after {
+  content: counters(my-counter, ".");
+}
+
+/**********************************************************************************************************************/
+
+/* cursor: auto(DV) -- https://codepen.io/chriscoyier/pen/uCwfB */
+.div {
+  cursor: not-allowed;
+}
+
+/**********************************************************************************************************************/
+
+/* outline - the external border for box model -- same as border in every value but it is not calculated in element space like border & padding & margin -- takes one value for all dirs */
+.outline {
+  outline-width: 2px;
+  outline-style: outset;
+  outline-color: #4b5557;
+  outline-offset: 5px; /* spacing between outline and box model */
+}
+/* shorthand code */
+.outline {
+  outline: 2px solid red;
+}
+
+/**********************************************************************************************************************/
+
+/* Grouping: to style group of elements */
+.div,
+p,
+.h1 {
+  color: #584;
+}
+/* every elements have same properties must be in grouping and put it in a framework */
+
+/* nesting: to style a specific element */
+.div p span {
+  font-weight: 300;
+}
+/* nesting with class or id is powerful than high number line in css file */
+
+/* nesting with grouping */
+.div p span,
+.nesting h1 {
+  white-space: nowrap;
+}
+
+/* chaining */
+h1.roar#meow /* h1 has roar class and has also meow id
+{
+	color: #12845D;
+}
+
+/* chaining with nesting */
+div p span#meow {
+  color: #12845d;
+}
+
+/**********************************************************************************************************************/
+
+/* Combinator Selector: a combinator is a special character that is used to combine two or more selectors in order to create more specific rules. There are four different types of combinators in CSS */
+/* 1. Descendant selector (space): selects all elements that are descendants of a specified element */
+div p {
+  color: #0a66b1;
+}
+/* 2. Child selector (>): selects all elements that are direct children of a specified element */
+div > p {
+  color: #0a66b1;
+}
+.container > * /* select all direct children of container */ {
+  color: #0a66b1;
+}
+/*
+difference between .parent div / .parent > div
+	1. .parent div => apply style on any divs inside parent regardless of divs is a direct child or grand child
+	2. .parent > div => apply style on all divs that is direct child only
+*/
+/* 3. Adjacent sibling selector (+): selects the first element that is immediately after the specified element. only direct next sibling from same parent */
+p + span {
+  color: #0a66b1;
+}
+/* 4. General sibling selector (~): selects all elements that are siblings of a specified element, and come after it. all next siblings from same parent */
+div ~ p {
+  color: #0d3349;
+}
+
+/**********************************************************************************************************************/
+
+/* universal selector */
+* {
+  color: #8699a4;
+}
+
+/**********************************************************************************************************************/
+
+/* Pseudo elements -- a pseudo-element is a keyword added to a selector that allows you to style a specific part of an element. Unlike pseudo-classes, which are used to select elements based on their state, pseudo-elements allow you to create virtual elements that can be styled independently of the actual content of the element */
+::first-letter {
+  color: #000;
+}
+::first-line {
+  color: #000;
+} /* first line at view port */
+::before {
+  color: #000;
+} /* before content */
+::after {
+  color: #000;
+} /* after content */
+::placeholder {
+  color: #000;
+}
+::selection {
+  color: #000;
+} /* selected text by mouse - apply text properties only  */
+
+/**********************************************************************************************************************/
+
+/* Pseudo Classes -- a pseudo-class is a keyword added to a selector that specifies a special state of the selected element(s). Pseudo-classes allow you to style elements based on user interactions, such as when a user hovers over an element, clicks on an element, or when an element has focus */
+:hover {
+  color: #000;
+}
+:focus {
+  color: #000;
+}
+:active {
+  color: #000;
+}
+:visited {
+  color: #000;
+}
+:link {
+  color: #000;
+}
+:checked {
+  color: #000;
+}
+:disabled {
+  color: #000;
+}
+:enabled {
+  color: #000;
+}
+:required {
+  color: #000;
+}
+:read-only {
+  color: #000;
+}
+:valid {
+  color: #000;
+}
+:invalid {
+  color: #000;
+} /* input with invalid value */
+:in-range {
+  color: #000;
+} /* input with value in range */
+:empty {
+  color: #000;
+} /* any html element either it is parent or child - tag1 contains tag2 means that tag1 is not empty */
+:target {
+  color: #000;
+}
+:lang(en) {
+  color: #000;
+}
+:root {
+  color: #000;
+} /* html element */
+
+:root:lang(en) {
+  color: #000;
+}
+:root:lang(en):hover {
+  color: #000;
+}
+
+:first-child {
+  /* must be actually the first child of an element */
+  color: #000;
+}
+:last-child {
+  color: #000;
+}
+:first-of-type {
+  /* first element of type either it is first child or not */
+  color: #000;
+}
+:last-of-type {
+  color: #000;
+}
+:only-child {
+  /* apply on element who is the only child in element */
+  color: #000;
+}
+:only-of-type {
+  /* apply on element who is the only child of its type in element */
+  color: #000;
+}
+:not(p) {
+  /* :not(.test){} / :not(:enabled){} */
+  color: #000;
+}
+
+div p:last-child span:first-child {
+  color: green;
+}
+div :empty {
+  /* means that locate any element inside div, not div itself */
+  background-color: #74242d;
+}
+
+/* child look at child element Regardless of its type - type look at child of specific type  */
+
+/* nth => number | keyword | formula */
+/*
+1. number => index of element
+2. keyword => odd | even
+3. formula => n+2 | 2n+1 | -n+4 | ...
+*/
+/*
+nth-child => count from start
+nth-last-child => count from end
+nth-of-type => count from start
+nth-last-of-type => count from end
+*/
+div:nth-child(2) {
+  background-color: #74242d;
+}
+div:nth-of-type(odd) {
+  background-color: #74242d;
+} /* start from 1st index */
+div:nth-of-type(even) {
+  background-color: #74242d;
+} /* start from 2nd index */
+div:nth-of-type(n + 2) {
+  background-color: #74242d;
+} /* start from 2nd index to end */
+div:nth-of-type(-n + 4) {
+  background-color: #74242d;
+} /* when using [-] that means reversing Pseudo Class i using - (of-type) will be (last-of-type) */
+div:nth-of-type(2n + 1) {
+  background-color: #74242d;
+} /* = odd: 2n = even */
+/* n starts from 0 */
+/*
+2n+1 = 2x0+1 = 0+1 = [1]
+2n+1 = 2x1+1 = 2+1 = [3]
+2n+1 = 2x2+1 = 4+1 = [5]
+......
+*/
+
+/* nth range */
+div:nth-of-type(n + 4):nth-of-type(-n + 8) {
+  background-color: #74242d;
+} /* start from 4th index to 8th index */
+
+/* nesting */
+div p:first-child span:last-child {
+  color: darksalmon;
+} /* last child of span inside first child of p inside div */
+
+/* nth with hover */
+div:nth-of-type(odd):hover {
+  background-color: red;
+}
+div:nth-of-type(even):hover {
+  background-color: yellow;
+}
+
+/**********************************************************************************************************************/
+
+/* Attributes Selector */
+[title] {
+  /* any element with title attribute */
+  color: #74242d;
+}
+[title="test"] {
+  /* any element with title attribute with value "test" */
+  color: #74242d;
+}
+div[title] {
+  /* div with title attribute */
+  color: #74242d;
+}
+div[class="div1"],
+form[name="register"] {
+  color: blue;
+}
+/* [^] start with */
+[class^="a"] {
+  color: #421c04;
+}
+/* [$] end with */
+[class$="om"] {
+  color: #00aced;
+}
+/* [*] contains string */
+[class*="r"] {
+  color: #d2e0e6;
+}
+/* [*] contains word */
+[class~="r"] {
+  color: #d2e0e6;
+}
+
+/**********************************************************************************************************************/
+
+/* box shadow: DV: none */
+/*
+	> Horizontal shadow (right side DV) -- take negative value (left side) -- required
+	> vertical shadow (bottom side DV) -- take negative value (top side) -- required
+	> blur-radius : do not take negative value
+	> spread: take negative value
+	> color : black(DV)
+	> place : inset, outset(DV)
+*/
+div {
+  box-shadow: -3px -5px 8px 5px #ddd inset; /* HS | VS | Blur | Spread | color | place */
+}
+div {
+  box-shadow: 5px 5px 3px #ddd, -5px -5px 3px #ccc, 10px 10px 1pt #eee;
+}
+
+/**********************************************************************************************************************/
+
+/* text shadow: DV: none */
+/*
+	> Horizontal shadow (right side DV) -- can take negative value (left side) -- required
+	> vertical shadow (bottom side DV) -- can take negative value (top side) -- required
+	> blur-radius : do not take negative value
+	> color : black(DV)
+*/
+p {
+  text-shadow: 10px 5px 3px #080; /* HS | VS | blur | color */
+}
+
+h1 {
+  text-shadow: 3px 5px 1px #ff0, -5px -4px 2px #00f;
+}
+
+/**********************************************************************************************************************/
+
+/* box sizing: content-box(DV) | border-box -- border-box save width for elements floating and only affect on height of these elements */
+/* dose not calculate padding & border & margin within floating element width or height */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/**********************************************************************************************************************/
+
+/* resize: none(DV) -- not supported in IE -- control whether and how an element can be resized by the user */
+div {
+  resize: both;
+}
+
+/**********************************************************************************************************************/
+
+/* opacity: DV: 1 -- applied to element and elements inside -- similar to (visibility: hidden) */
+div {
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* for IE */
+}
+
+/**********************************************************************************************************************/
+
+/* transition: property | duration | timing function | delay */
+div {
+  transition-property: width, background-color; /* all(DV) | none | property -- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties */
+
+  transition-duration: 1s, 2ms; /* DV: 0 */
+
+  transition-timing-function: ease-in-out; /* speed curve -- ease(DV) | ease-in | ease-out | ease-in-out | linear | steps | cubic-bezier */
+
+  transition-timing-function: steps(4, start);
+  transition-timing-function: steps(3, end);
+  transition-timing-function: steps(2); /* end by default */
+  transition-timing-function: cubic-bezier(
+    0.75,
+    0.5,
+    0.3,
+    0.6
+  ); /* http://www.css3beziercurve.net/ */
+
+  transition-delay: 5s; /* DV: 0 */
+}
+
+/* shorthand code */
+div {
+  transition: all 5ms ease-in-out 1s, width 1.5ms, background 3s, all 2ms; /* (property shorthand code means that applying transition on all sub-properties) */
+}
+
+/**********************************************************************************************************************/
+
+/* multi columns: screen size is important -- count (DV:auto) | gap(DV:normal) | rule(width, style, color) | width(DV:auto) | span(DV:1) | fill */
+p {
+  column-count: 3;
+
+  column-gap: 10px;
+
+  column-rule-width: 2px;
+  column-rule-style: solid;
+  column-rule-color: #080;
+  column-rule: 3px dashed #00f; /* like border - DV: medium none black */
+
+  column-width: 250px; /* DV: auto -- depending on screen will ignore count */
+
+  column-span: all; /* place of child element */
+
+  column-fill: auto; /* balance(DV) | auto */
+}
+
+/* shorthand code */
+p {
+  columns: auto 3; /* width, count -- DV:auto auto */
+}
+
+/**********************************************************************************************************************/
+
+/* media OR <link rel="stylesheet" href="#" media="print"/> OR <style media="print"></style> */
+/* start with smallest screen to larger -- mobile first */
+@media print {
+  p {
+    color: blue;
+    font-size: 20px;
+  }
+}
+
+@media screen {
+  p {
+    color: green;
+    font-size: 30px;
+  }
+}
+
+/* media query */
+@media (min-width: 320px) and (max-width: 480px) /* range */ {
+  div {
+    color: #74242d;
+  }
+}
+
+/*
+(min-width: 320px) - (max-width: 480px) is breakpoints
+(max-width: 600px) mean less than   =>   600px <-------------------------|600px -- smaller screens
+(min-width: 600px) mean greater than 600px   =>   600px|-----------------------> -- larger screens
+(min-width: 320px) and (max-width: 480px) mean between 320px and 480px  =>  320px|<------------------------->|480px
+(max-width: 600px) and (min-width: 900px) for screens less than 600px or screens greater than 900px  =>  <-------------------------|600px 900px|----------------------->
+/*
+
+http://screensiz.es/
+
+https://stackoverflow.com/questions/16443380/common-css-media-queries-break-points
+
+https://css-tricks.com/snippets/css/media-queries-for-standard-devices/
+
+https://scotch.io/tutorials/default-sizes-for-twitter-bootstraps-media-queries
+
+https://responsivedesign.is/develop/browser-feature-support/media-queries-for-common-device-breakpoints/
+
+library: https://gist.github.com/hs0ucy/3762901
+*/
+
+/* Example 1 */
+/*
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CSS</title>
+    <link rel="stylesheet" href="css/master.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="parent">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+    </div>
+  </body>
+</html>
+*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+.parent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.parent > div {
+  padding: 20px;
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  width: 100%;
+  margin-bottom: 5px;
+}
+/* Mobile */
+@media (max-width: 767px) {
+  .parent > div {
+    width: calc(100% - 10px);
+  }
+}
+/* Small Screens */
+@media (min-width: 768px) {
+  .parent > div {
+    width: calc(50% - 10px);
+  }
+}
+/* Medium Screens */
+@media (min-width: 992px) {
+  .parent > div {
+    width: calc(25% - 10px);
+  }
+}
+/* Large Screens */
+@media (min-width: 1200px) {
+  .parent > div {
+    width: calc(20% - 10px);
+  }
+}
+/* Custom */
+@media (max-width: 1199px) {
+  .parent > div {
+    width: calc(33.333% - 10px);
+  }
+}
+
+/* Example 2 */
+/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agency</title>
+  <link rel="stylesheet" href="./solution.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="main">
+    <img class="logo" src="./assets/images/logo.png" alt="logo">
+    <h1>We are a <span class="creative">Creative</span> <br />Design Agency</h1>
+    <div class="left card"><img class="tile-image" src="./assets/images/beautiful.jpg" alt="hand and flower in water">
+      <h2 class="card-title">Beauty</h2>
+      <p class="card-text">We strive to create the most beautiful websites for all your needs. Working closely with you
+        to
+        design and
+        develop an amazing website for your business.</p>
+    </div>
+    <div class="right card"><img class="tile-image" src="./assets/images/construction.jpg" alt="metal structure">
+      <h2 class="card-title">Construction</h2>
+      <p>Built by our team of professional developers, we ensure the most rigourous and modern websites. Built from
+        scratch using HTML and CSS. Only the best for you.</p>
+    </div>
+  </div>
+  <footer>
+    <p>Create. Develop. Design.</p>
+  </footer>
+</body>
+</html>
+*/
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 50px 50px 0 50px;
+  background-color: #faf9f6;
+  display: flex;
+  flex-direction: column;
+  min-height: 95vh;
+}
+.main {
+  flex: 1;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+footer {
+  text-align: right;
+  color: midnightblue;
+}
+
+.tile-image {
+  height: 200px;
+  float: left;
+  margin-right: 50px;
+}
+
+.card {
+  width: 45%;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.creative {
+  color: midnightblue;
+}
+
+@media (max-width: 680px) {
+  .logo {
+    width: 100px;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    text-align: center;
+  }
+
+  .card {
+    width: 100%;
+    display: block;
+    margin-bottom: 30px;
+    text-align: justify;
+  }
+
+  .card img {
+    margin-bottom: 10px;
+    width: 100%;
+    display: inline;
+    object-fit: cover;
+  }
+}
+
+/**********************************************************************************************************************/
+
+/* transform 2d: (x / y) - DV: none */
+/* 1. rotate(deg) - take negative value - the idea of rotate is taken from scale */
+div {
+  transform: rotate(90deg);
+}
+div {
+  transform: rotate(-45deg);
+}
+/* 2. scale(width, height) - DV : 1 - take negative value */
+div {
+  transform: scale(-1, 1); /* flip horizontally */
+}
+div {
+  transform: scale(2); /* = transform: scale(2, 2) */
+}
+div {
+  transform: scaleX(-2);
+}
+div {
+  transform: scaleY(0.3);
+}
+/* 3. translate(x, y) - take negative value - must type the two values not like scale, if i write one value it will be (x) only */
+div {
+  transform: translate(10px, 0);
+}
+div {
+  transform: translateX(-10px);
+}
+div {
+  transform: translateY(-10px);
+}
+/* 4. skew(x, y) - take negative value - must type the two values not like scale, if i write one value it will be (x) only */
+div {
+  transform: skew(0, -10deg);
+}
+div {
+  transform: skewX(-30deg);
+}
+div {
+  transform: skewY(20deg);
+}
+/* transform properties */
+div {
+  transform: rotateY(-180deg) scale(1.5) translateX(-50px) skew(-10deg, 0);
+}
+/* 5. matrix(scaleX, skewY, skewX, scaleY, translateX, translateY) */
+div {
+  transform: matrix(-1.25, 3deg, 0, 3px, 50px, 10px);
+}
+
+/**********************************************************************************************************************/
+
+/* transform 3d: (x / y / z) - work with perspective on parent */
+/* 1. rotate X Y Z (deg) - take negative value */
+div {
+  transform: rotate3d(1, 1, 1, 45deg);
+}
+div {
+  transform: rotateX(90deg);
+}
+div {
+  transform: rotateY(-90deg);
+}
+div {
+  transform: rotateZ(45deg); /* = transform: rotate(45deg) */
+}
+/* 2. scale3d(x, y, z) - DV : 1 - take negative value */
+div {
+  transform: scale3d(
+    0.5,
+    2,
+    3
+  ); /* z will be shown perfectly with rotate or other transform effect */
+}
+div {
+  transform: scaleX(2);
+}
+div {
+  transform: scaleY(0.3);
+}
+div {
+  transform: scaleZ(0.3);
+}
+/* 3. translate3d(x, y, z) - take negative value */
+div {
+  transform: translate3d(10px, 0, 200px);
+}
+div {
+  transform: translateX(-10px);
+}
+div {
+  transform: translateY(-10px);
+}
+div {
+  transform: translateZ(-10px); /* = translate3d (0, 0, -10px) */
+}
+/* can write transform properties together */
+div {
+  transform: rotateZ(-180deg) scale3d(1.5, 1, 0.5) translateZ(-50px)
+    skew(-10deg);
+}
+/* 5. matrix3d() - take 16 value - Matrix Tool : http://ds-overdesign.com/transform/matrix3d.html */
+div {
+  transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+}
+
+/* transform-style: work with sub parent when parent takes perspective - DV: flat */
+div {
+  transform-style: preserve-3d; /* save 3d option - sub parent  */
+}
+
+/* transform-origin: work with child - (framework) */
+div {
+  transform-origin: top; /* the point that the element transformed from it */
+}
+
+/* perspective: applying 3d transform on elements - https://desandro.github.io/3dtransforms/examples/perspective-03.html */
+/* when i use transform:translateZ() with same value of perspective the element will disappear */
+body {
+  perspective: 1000px; /* space between transformed element and user - activate 3d on children elements */
+
+  perspective-origin: 70% 30%; /* (Vanishing point) it is the point you view the element from - DV : 50% 50% - take negative values - work with perspective - 100% = right | 0 = left | 50% = center */
+  perspective-origin: center top;
+  perspective-origin: right;
+  perspective-origin: -30px;
+}
+
+/* backface visibility: DV: visible - put property in the two children */
+div {
+  backface-visibility: hidden;
+}
+
+/**********************************************************************************************************************/
+
+/* animation: animation name | start point | end point */
+/*
+examples:
+
+https://www.youtube.com/watch?v=ddsLpKQN134&index=45&list=PLDoPjvoNmBAyEyQaHOHO1HJtmSgGt07VC
+https://codepen.io/OsamaElzero/pen/zNPGKr
+
+https://www.youtube.com/watch?v=eP2g35AvD5A&list=PLDoPjvoNmBAyEyQaHOHO1HJtmSgGt07VC&index=46
+https://codepen.io/OsamaElzero/pen/VPrLaW
+
+https://www.youtube.com/watch?v=J2jTFB1erXU&index=47&list=PLDoPjvoNmBAyEyQaHOHO1HJtmSgGt07VC
+https://codepen.io/OsamaElzero/pen/YNEXwx
+*/
+/*
+tools:
+
+https://coveloping.com/tools/css-animation-generator
+http://ianlunn.github.io/Hover/
+https://daneden.github.io/animate.css/
+*/
+/*
+animation-name * : none(DV) - reset animation on element
+animation-duration
+animation-timing-function : ease(DV) | ease-in | ease-out | linear | steps | cubic-bezier
+animation-delay : 0(DV)
+animation-iteration-count : 1(DV) | 2-3-4-.... | infinite -- loop
+animation-direction : normal(DV) [start from 0%] | reverse [start from 100%] | alternate [start from 0% in first loop, start from 100% in next loops] | alternate-reverse [unlike alternate]
+animation-fill-mode : none(DV) | forwards (stop animation in last key) | backwards (take first key instantly before executing animation) | both (forwards & backwards)
+animation-play-state : running(DV) | paused
+*/
+div {
+  animation-name: moving, scrolling;
+  animation-duration: 5s, 5ms;
+  animation-timing-function: ease-in-out;
+  animation-delay: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+/* shorthand code: name | duration | timing-function | delay | iteration-count | direction | fill-mode | play-state */
+.div1 {
+  animation: scrolling 5s 2 linear,
+    sparkling 3ms ease-in-out 2s infinite reverse both paused;
+}
+.div2 {
+  animation: sparkling 5s 2 ease-in,
+    moving 3ms ease 2s infinite reverse both paused;
+}
+.div3 {
+  animation: moving 5s 2 linear,
+    scrolling 3ms ease-out 2s infinite reverse both paused;
+}
+/* keyframes - as functions - can use it more one time */
+@keyframes scrolling {
+  from /* 0% */ {
+    background-color: #74242d;
+  }
+
+  to /* 100% */ {
+    background-color: #5e740b;
+  }
+}
+@keyframes moving {
+  0% {
+    top: 0;
+    left: 0;
+  }
+
+  25% {
+    top: 0;
+    left: 100px;
+  }
+
+  50% {
+    top: 100px;
+    left: 200px;
+  }
+
+  75% {
+    top: 200px;
+    left: 0;
+  }
+
+  100% {
+    top: 0;
+    left: 0;
+  }
+}
+@keyframes sparkling {
+  0%,100% /* tow or more keys take same function */ {
+    top: 0;
+    left: 0;
+  }
+
+  25% {
+    top: 0;
+    left: 100px;
+  }
+
+  50% {
+    top: 100px;
+    left: 200px;
+  }
+
+  75% {
+    top: 200px;
+    left: 0;
+  }
+}
+
+/**********************************************************************************************************************/

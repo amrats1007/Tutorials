@@ -1,0 +1,1188 @@
+<!--
+
+HTML Boilerplate
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
+	<body>
+	</body>
+</html
+
+-->
+
+<!--
+
+> HTML: Hypertext Markup Language, HTML is a markup language that is used to create the main structure/content of web pages and web applications
+
+> Markup: Text that has a special meaning in a document (HTML, XML, etc.) such as headings, paragraphs, lists, links, bold text and so on.
+
+> Tags: Text surrounded by angle brackets (<>). Tags are usually made up of several words surrounded by angle brackets, such as <p> or </p>. The start tag is written as <tagname>, and the end tag is written as </tagname>. there are some Tags that have no end tag, such as <br> or <hr>
+
+> element: is a part of a web page that is enclosed in a start tag and an end tag, or a self-closing tag (if it is a void element). The start tag and end tag together form an element. The text between the start tag and end tag is the content of the element. The content of an element is either another element, text, or a combination of both.
+
+> elements witch are has no content and no closing/end tag are called void elements, self-closing elements or empty elements
+
+> Tags are used to define the structure of a webpage, while elements are used to define the content of a webpage.
+
+> elements are the building blocks of a webpage, while tags are used to mark up and define how elements should be displayed on the page.
+
+> tree structure: parent-child relationship (nodes and branches). tree structure is about data structure and how data is organized in a tree-like structure
+
+> tree structure rules: 1. The tree starts with a single node, the root, which has no incoming branches. 2. Each node can have branches to new nodes. 3. Each (non-root) node can have only one incoming branch.
+
+> DOM (Document Object Model) is a tree structure with a node for each HTML element, piece of text, image, and any other object in the web page. The DOM is a programming interface for HTML and XML documents. It represents the page so that programs can change the document structure, style, and content. The DOM represents the document as nodes and objects. That way, programming languages can connect to the page. The DOM is an object-oriented representation of the web page, which can be modified with a scripting language such as JavaScript which is the default scripting language for HTML.
+
+> there are differences in the code between what you see in the Elements tab (or Inspector Tab in Firefox), and what you see in the text editor. The Elements tab isn't showing you the original HTML source code. It's showing you a sort of map or representation of how the browser sees the page. For instance, in Chrome, many pieces of text will show up in "double quotes", which aren't in the original source or in the rendered version of the page. This is because the browser is showing you the text as it sees it, and it sees it as a string. It's not showing you the original source code, It's showing you the DOM.
+
+> in HTML where an optional closing tag, such as a </li> or </p> tag on a list item or paragraph, was not used. When you view this in developer tools The browser will show the closing tag anyway. Developer Tools makes this representation look like HTML, because that's a convenient way for web developers to see what's going on in the page. But the view that you see in Elements Tab is actually a picture of the way the browser thinks about the page internally not just a copy of the original HTML file.
+
+> To view a copy of the original HTML file (source Code), right click on page and select view page source or ctl + u -- html code is not readable for human, but it is readable for browser and browser render it to human-readable page -- html code is not executable code, it is markup language code -- html code is not case sensitive
+
+> <head></head>: contains meta data [configuration]
+
+> <body></body>: contains elements [content]
+
+> almost all elements have default or custom styling in user agent stylesheet (browser default style) -- user agent stylesheet is a default style sheet that is used by browsers to render HTML elements when no other style sheet is applied to the document
+
+> ID / Class (global attributes)
+	>> ID = Identifier / Class = Classified [Class is a group of elements with same characteristics]
+	>> Tag can take many classes, but it takes only one unique ID
+
+> element can be block or inline or inline-block
+	>> block: takes full width of parent element and affect with width & height
+	>> inline: takes width and height of its content (auto) 
+	>> inline-block: takes width of its content and can take width and height like block element -- inline-block is a hybrid of inline and block -- inline-block is a block element that is formatted as an inline element
+
+> Power of style: 1. Inline Style[style attribute]  2. Internal Style[style element] 3. External Style[style sheet](last imported is the powerful one)
+
+-->
+
+<!DOCTYPE html>
+<!-- DOCTYPE: HTML 5 Tag -- can be written in lower case letters but must be written in upper case letters when using xml in the file -- specify render mode in browser [standard compliance mode - quirks mode] -->
+
+<html lang="en">
+  <!-- Opening/Start Tag -->
+
+  <!-- Start Of Head -->
+
+  <head>
+    <!-- meta -->
+
+    <meta charset="UTF-8" />
+    <!-- Website Encoding -->
+    <meta name="description" content="Learning Web Design (HTML)" />
+    <!-- Website Description -->
+    <meta name="version" content="v1.0" />
+    <!-- Website Version -->
+    <meta name="author" content="Amr" />
+    <!-- Website Author -->
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <!-- Website Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- For Devices -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- For Internet Explorer -->
+    <meta name="custom" content="custom" />
+    <!-- custom meta -->
+
+    <!-- title -->
+
+    <title>Learning HTML</title>
+
+    <!-- base -->
+
+    <base href="https://cdn.example.com/" />
+    <!-- This is an HTML tag that is used to specify the base URL for all relative URLs within a document. The <base> tag is typically placed within the <head> section of an HTML document, and its href attribute is used to specify the base URL. For example, if you have a web page located at "https://www.example.com/my-page.html" and you have a link to "images/image.jpg", the browser will look for the image at "https://www.example.com/images/image.jpg". However, if you specify a base URL of "https://cdn.example.com/", the browser will look for the image at "https://cdn.example.com/images/image.jpg" instead -->
+
+    <!-- link -->
+
+    <link rel="stylesheet" href="#" />
+    <!-- External Style -->
+    <link rel="stylesheet" href="#" media="screen" />
+    <!-- External Style for specific media -->
+    <link rel="icon" href="#/favicon.ico" />
+    <!-- Favicon -->
+    <link rel="icon" href="#/favicon.ico?v=2" />
+    <!-- Favicon with version -->
+    <link rel="icon" href="#/favicon.ico" type="image/x-icon" />
+    <!-- Favicon with type -->
+    <link rel="icon" href="#/favicon.ico" type="image/x-icon" sizes="16x16" />
+    <!-- Favicon with type and size -->
+    <link rel="icon" href="#/favicon.ico" type="image/x-icon" sizes="16x16 32x32" />
+    <!-- Favicon with type and sizes -->
+
+    <!-- Internal Style -->
+
+    <style media="(min-width: 320px)">
+      div blockquote {
+        background: lightgray;
+        padding: 5px;
+      }
+      iframe {
+        border: 2px solid red;
+        margin: 20px;
+        overflow: hidden;
+        padding: 10px;
+      }
+      .clear_fix {
+        clear: both;
+      }
+    </style>
+
+    <!-- Javascript 01: default scripting language in html 5 -->
+
+    <script src="#">
+      alert("welcome");
+      function sayHello()
+      {
+      	alert("HELLO");
+      }
+      sayHello();
+    </script>
+    <!--
+		modern browsers deal with undefined tags as inline, and apply style on these tags perfectly, old browsers deal with html 5 tags and undefined tags as inline, and do not apply style on these tags only after create these elements by js - to apply style on these tags (html5 tags / undefined tags) in old browsers you have to use one of two methods
+		-->
+    <!-- 1. javascript code [document.createElement('')], but still deal with them as inline tag -->
+    <script>
+      document.createElement("article"); // to define html5 element to old browsers
+      document.createElement("section"); // to define html5 element to old browsers
+      document.createElement("selim"); // to define custom html element to new and old browsers
+    </script>
+    <!-- 2. use html5shiv & respond to support html5 and css3 in legacy browsers instead of previous javascript code - https://github.com/afarkas/html5shiv -->
+    <!-- [if lt IE 9]>
+			<script src="html5-css3 Scripts/html5shiv.min.js"> // for html5 </script>
+			<script src="html5-css3 Scripts/respond.min.js"> // for css3 media </script>
+		<![endif] -->
+    <script src="html5-css3 Scripts/prefixfree.jquery.js"></script>
+    <!-- css3 vendor prefixes -->
+  </head>
+
+  <!-- End Of Head -->
+
+  <!-- Start Of body -->
+
+  <body>
+    <!-- Syntax -->
+
+    <!-- 1. attributes values: can use double quotes or single quotes in the same tag -- you can use no quotes if value is single text, but it is not preferred because The quotes indicate where an attribute value starts and stops, even if there are spaces inside it -->
+    <img src="#" alt="image" title="amr" class="test" style="color: blue; text-align: center" />
+    <!-- 2. attributes: syntactic sugar -->
+    <img src="#" alt="rr" title="tt" width="250" height="250" class="test" id="books" />
+    <!-- 3. attributes names & tag names: you can use upper case letters or lower case letters or use both together -- but it's preferred to use lower case letters (best practice - w3 recommendation) -->
+    <img src="#" alt="rR" title="tt" width="250" height="250" class="Test" id="book" />
+    <!-- 4. it is allowed to not close tag if it is a child and browser will render it perfectly -->
+    <div>
+      <p>hello</p>
+    </div>
+
+    <!-- 5. Attributes: global attributes, element attributes and custom attributes -->
+    <!-- 6. can write html code without <html> and <head> and <body> tags and the code will be valid -->
+    <!-- 7. using self close " /> " in void elements is optional, but when using xml in your page it is recommended to use self close " /> " -->
+    <!-- 8. browser does not render (= ignore) spaces inside text or inside tags -->
+    <!-- 9. span has no default style in user agent stylesheet like normal text -->
+
+    <!-- Global Attributes -->
+    <!-- accesskey: specifies a shortcut key to activate or add focus to an element -->
+    <!-- autocapitalize: specifies whether the value of the element should be automatically capitalized as it is entered/edited by the user -->
+    <!-- autofocus: specifies that an element should automatically get focus when the page loads -->
+    <!-- class: specifies one or more classnames for an element -->
+    <!-- contenteditable: specifies whether the content of an element is editable or not -->
+    <!-- contextmenu: specifies a context menu for an element -->
+    <!-- data-*: is used to store custom data private to the page or application -->
+    <!-- dir: specifies the text direction -->
+    <!-- draggable: specifies whether an element is draggable or not -->
+    <!-- enterkeyhint: specifies what action label (or icon) to present for the enter key on virtual keyboards -->
+    <!-- exportparts: specifies the parts of the element to export when the element is a Web Component -->
+    <!-- hidden: specifies that an element is not yet, or is no longer, relevant -->
+    <!-- id: specifies a unique id for an element -->
+    <!-- inert: specifies that an element is inert or not -->
+    <!-- inputmode: specifies what kind of data should be entered into an input element -->
+    <!-- is: specifies the name of the element's interface, which is used to define the element's behavior -->
+    <!-- itemid: specifies a unique identifier for an element (must be unique within the page) -->
+    <!-- itemprop: specifies the name of a property associated with the element -->
+    <!-- itemref: specifies a list of one or more element IDs -->
+    <!-- itemscope: specifies that the element is a property of another element -->
+    <!-- itemtype: specifies the URL of the element's property -->
+    <!-- lang: specifies the language of the element's content -->
+    <!-- nonce: specifies a cryptographic nonce (number used once) -->
+    <!-- part: specifies the name of the element's shadow parts -->
+    <!-- slot: specifies the name of the element's shadow DOM slot -->
+    <!-- spellcheck: specifies whether the element is to have its spelling and grammar checked or not -->
+    <!-- style: specifies an inline CSS style for an element -->
+    <!-- tabindex: specifies the tabbing order of an element -->
+    <!-- title: specifies extra information about an element -->
+    <!-- translate: specifies whether the content of an element should be translated or not -->
+    <!-- virtualkeyboardpolicy: specifies how the virtual keyboard should be displayed when an element is focused -->
+
+    <!-- Element Attributes -->
+    <!-- accept: specifies the types of files that the server accepts (only for type="file") -->
+    <!-- autocomplete: specifies whether the <input> element should have autocomplete enabled -->
+    <!-- capture: specifies that the camera or microphone should be activated when the user clicks on the <input> element -->
+    <!-- crossorigin: specifies how the element handles crossorigin requests -->
+    <!-- disabled: specifies that the <input> element should be disabled -->
+    <!-- elementtiming: specifies the name of the element's timing entry -->
+    <!-- for: specifies which form the <label> element is bound to -->
+    <!-- max: specifies the maximum value for an <input> element -->
+    <!-- maxlength: specifies the maximum number of characters allowed in an <input> element -->
+    <!-- min: specifies the minimum value for an <input> element -->
+    <!-- minlength: specifies the minimum number of characters allowed in an <input> element -->
+    <!-- multiple: specifies that a user can enter more than one value -->
+    <!-- pattern: specifies a regular expression that an <input> element's value is checked against -->
+    <!-- readonly: specifies that an <input> element is read-only -->
+    <!-- rel: specifies the relationship between the current document and the linked document -->
+    <!-- required: specifies that the <input> element must be filled out before submitting the form -->
+    <!-- size: specifies the width, in characters (for <input> elements) or specifies the number of visible options (for <select> elements) -->
+    <!-- step: specifies the legal number intervals for an <input> element -->
+
+    <!-- Horizontal Rule -->
+
+    <hr style="border: 2px solid blue" />
+    <!-- style: inline style -->
+
+    <!-- Breaking Space -->
+
+    <br />
+
+    <!-- text: inline element -- it will be rendered in browser beside them -->
+
+    i love programming html css js
+
+    <!-- Heading: h1 | h2 | h3 | h4 | h5 | h6 -->
+
+    <h1>Level 1</h1>
+    <!-- Top Level Of Heading -->
+    <h2>Level 2</h2>
+    <h3>Level 3</h3>
+    <h4>Level 4</h4>
+    <h5>Level 5</h5>
+    <h6>Level 6</h6>
+    <!-- Less Level Of Heading -->
+    <!--
+		h1 is used for the main heading on a page, while the rest are used for subheadings. We use a smaller heading to show that one section is inside another section.
+		In contrast, if one section simply comes after the other then we use the same level of heading. For example, suppose I have a page about animals, with one section about cats and another about dogs. Here's what the headings might look like:
+
+		Animals ← h1
+		This is my super cool page about my favorite animals. For the main heading, I'm using an h1 element.
+
+			Cats ← h2
+			This part is all about cats.
+
+				Cat Behavior ← h3
+				This part is about cat behavior.
+
+				Cat Diet ← h3
+				This part is about what cats eat.
+
+			Dogs ← h2
+			This part is all about dogs.
+
+				Dog Behavior ← h3
+				This part is about dog behavior.
+
+				Dog Diet ← h3
+				This part is about what dogs eat.
+		-->
+
+    <!-- Paragraph -->
+
+    <p hidden>this is paragraph</p>
+    <!-- hidden: hide element from user -- it is not recommended to use it, because it will not be rendered in browser, and it will not be accessible by screen readers -->
+    <p>
+      this is
+      <!-- browser ignore spaces between words in p -->
+      paragraph
+    </p>
+    <p dir="rtl">this is paragraph</p>
+    <!-- dir: Defines the text direction of an element -->
+    <p>this is paragraph<br />and I will make it possible</p>
+    <!-- new line by <br> -->
+    <p>
+      i love php
+      <br />
+      <!-- new line by <br> -->
+      and python
+    </p>
+
+    <!-- pre: element is displayed in a fixed-width font (usually Courier), and it preserves both spaces and line breaks -->
+
+    <pre lang="en" translate="yes" spellcheck="true">
+			Text in a pre element
+			is displayed in a fixed-width
+			font, and it preserves
+			both      spaces and
+			line breaks
+		</pre
+    >
+    <!-- lang: Defines the language of an element / translate: Specifies whether the content of an element should be translated or not / spellcheck: defines whether the element may be checked for spelling errors -->
+
+    <!-- span: element is an inline container used to mark up a part of a text, or a part of a document -->
+
+    <p>My name is <span>Amr</span> and I am <span>25</span> years old</p>
+
+    <!-- img: For Importing Images Into Website -- considered as inline-block element as it is already inline element and can edit its width and height effectively like block element -->
+
+    <img src="" alt="web design" title="web design" width="1500" height="750" />
+    <img src="" alt="" draggable="true" />
+    <!-- draggable: Specifies whether an element is draggable or not -->
+
+    <!-- a: anchor link For Importing Links Into Website -- Inline Tag -- hypertext is Text that can have links or references -->
+
+    <a href="https://www.google.com.eg" title="https://www.google.com.eg">Google</a>
+    <!-- Open Link In Self Tab by default -->
+    <a href="https://www.facebook.com" target="_blank" title="go to facebook">Facebook</a>
+    <!-- Open Link In New Tab -->
+    <a href="../#.html" target="_self">test page</a>
+    <!-- Go To another page in same project -->
+    <a href="#test1" target="_self">Heading</a>
+    <!-- Go To section In Same Doc -->
+    <a href="#test2" target="_blank">Heading</a>
+    <!-- Go To section In Same Doc in new tab -->
+    <a href="mailto:amrats1007@gmail.com" target="_self">contact me</a>
+    <!-- email -->
+    <a href="tel:+49.157.0156">+49 157 0156</a>
+    <!-- phone number -->
+    <a href="tel:+1(800)555-0123" title="amr phone">(800) 555-0123</a>
+    <!-- phone number -->
+
+    <!-- div: division -->
+
+    <div class="div" id="test1">
+      <h1>heading <span>#1</span></h1>
+      <p>paragraph</p>
+      <img src="#" alt="amr name" title="amr name 5" /><br />
+      <a href="#" target="_blank">Twitter</a>
+      <div contenteditable="true">
+        <!-- contenteditable: Specifies whether the content of an element is editable or not -->
+        <h2>heading <span>#2</span></h2>
+        <p>paragraph</p>
+        <img src="#" alt="amr name" title="amr name 5" /><br />
+        <a href="#" target="_blank">Twitter</a>
+      </div>
+    </div>
+
+    <!-- Unordered List -->
+
+    <ul>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>Javascript</li>
+      <li>Jquery</li>
+    </ul>
+    <ul>
+      <!-- the closing tag is optional -->
+      <li>HTML</li>
+      <li>css</li>
+      <li>Javascript</li>
+      <li>Jquery</li>
+    </ul>
+
+    <!-- Ordered List -->
+
+    <ol type="A" start="5" reversed>
+      <li value="50">HTML</li>
+      <!-- value: Specifies the value of a list item -->
+      <li>CSS</li>
+      <li>Javascript</li>
+      <li>Jquery</li>
+    </ol>
+    <ol>
+      <li value="3">HTML</li>
+      <!-- 3. -->
+      <li value="4">CSS</li>
+      <!-- 4. -->
+      <li value="5">Javascript</li>
+      <!-- 5. -->
+      <li value="6">Jquery</li>
+      <!-- 6. -->
+    </ol>
+
+    <!-- nested OL/UL -->
+    <p>Web Design Languages</p>
+    <ul>
+      <li>
+        HTML
+        <ol reversed>
+          <li>html 4</li>
+          <li>
+            html 5
+            <ul>
+              <li>version 1</li>
+              <li>version 2</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li>CSS</li>
+      <li>
+        Javascript
+        <ol type="1" start="4">
+          <li>Jquery</li>
+          <li>Node.js</li>
+        </ol>
+      </li>
+    </ul>
+
+    <!-- Definition/Description List -->
+
+    <dl>
+      <dt>HTML</dt>
+      <dd>Good</dd>
+      <dd>Easy</dd>
+      <dt>CSS</dt>
+      <dd>Comfortable</dd>
+      <dd>well</dd>
+    </dl>
+
+    <!--
+		Text Style
+			b/strong | i/em | small | mark | del/s | ins/u | sup | sub | q | blockquote | cite | code | var | samp | kbd | abbr | dfn | bdi | bdo | ruby rt rp | wbr
+			strong/em(emphasized) : important text - seo, b/i : has no semantic meaning like strong/em
+		-->
+
+    <!-- b/strong | i/em | small | mark | del/s | ins/u | sup | sub -->
+    <p>
+      Copy Right Reserved To <b>AMR</b><strong>ABDELGHANI</strong> and I will Make Me Very <small>Strong</small>,I will make <i>HTML</i> and <em>CSS</em> UP, I will make <mark>H<sub>2</sub>O</mark> and I came to egypt in October 15<sup>th</sup> i will tell you why <mark>H<sub>2</sub>O</mark> this
+      price was <del>500$</del> but now is <ins>1000$</ins>not<u>700$</u>
+    </p>
+
+    <!-- blockquote -->
+    <blockquote cite="#">HTML and CSS Will turn you from 0 to wow</blockquote>
+    <!-- Defines a long block quotation -->
+
+    <!-- q -->
+    <q cite="">this wards Said By MUHAMMAD</q>
+    <!-- Defines a short, inline quotation -- puts double quotes before and after sentence, not selected -->
+
+    <!-- cite -->
+    <cite contenteditable="true">by George Orwell (Part 1, Chapter 1)</cite>
+    <!-- for source of the quote -- defines the title of a work -->
+
+    <!-- A URL for the source of the quotation may be given using the cite attribute, while a text representation of the source can be given using the cite element -->
+    <blockquote cite="http://www.elzero.org">HTML and CSS Will turn you from 0 to wow</blockquote>
+    <q cite="http://www.elzero.org">this wards Said By MUHAMMAD</q>
+    <cite>by Osama Elzero</cite>
+
+    <!-- bdi: Bi-Directional Isolation -- to deal with right to left languages -- to make sure that the browser will not change the order of the words -->
+    <ul>
+      <li>ahmed: 80 point</li>
+      <li>amr: 50 point</li>
+      <li><bdi>على</bdi>: 20 point</li>
+    </ul>
+
+    <bdo dir="rtl"></bdo>
+    <!-- Bi-Directional Override: used to override the current text direction -->
+
+    <wbr />
+    <!-- word break opportunity -->
+
+    <var></var>
+    <!-- variable look -->
+
+    <samp></samp>
+    <!-- Sample: output from a computer program -->
+
+    <kbd></kbd>
+    <!-- Keyboard input -->
+
+    <abbr title=""></abbr>
+    <!-- Abbreviation -->
+
+    <dfn title="">
+      <!-- definition: like as <abbr> but it makes text italic -->
+      <abbr title=""></abbr>
+      <!-- can use <abbr> inside it -->
+    </dfn>
+
+    <address></address>
+    <!-- defines contact information for the author/owner of a document or an article -->
+
+    <!-- ruby: used to provide pronunciation of East Asian characters -->
+    <ruby> 漢 <rp>(</rp><rt>Kan</rt><rp>)</rp> 字 <rp>(</rp><rt>ji</rt><rp>)</rp> </ruby>
+
+    <!-- code: inline tag -->
+    <code>&lt;div class=""&gt;&lt;/div&gt;</code>
+    <pre>
+			<code>
+				var x = 10;
+				var y = 20;
+				console.log(x + y);
+			</code>
+		</pre>
+
+    <!-- Table -->
+
+    <!-- Table: used to create a table -- Page loads after table loading -->
+    <table class="table1">
+      <caption>
+        Leaning Web Design
+      </caption>
+      <tr>
+        <th></th>
+        <th>HTML</th>
+        <th>CSS</th>
+        <th>Javascript</th>
+        <th>Jquery</th>
+        <th>PHP</th>
+      </tr>
+      <tr>
+        <td>October</td>
+        <td>50%</td>
+        <td>60%</td>
+        <td>70%</td>
+        <td>80%</td>
+        <td>90%</td>
+      </tr>
+      <tr>
+        <td>November</td>
+        <td>50%</td>
+        <td>60%</td>
+        <td>70%</td>
+        <td>80%</td>
+        <td>90%</td>
+      </tr>
+      <tr>
+        <td>December</td>
+        <td>50%</td>
+        <td>60%</td>
+        <td>70%</td>
+        <td>80%</td>
+        <td>90%</td>
+      </tr>
+    </table>
+    <!-- Table: thead - tbody - tfoot -->
+    <table class="table2">
+      <caption>
+        Leaning Web Design
+      </caption>
+      <tfoot>
+        <tr>
+          <th>TOTAL</th>
+          <td>100%</td>
+          <td>100%</td>
+          <td>100%</td>
+          <td>100%</td>
+          <td>100%</td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr>
+          <th>October</th>
+          <td>50%</td>
+          <td>60%</td>
+          <td>70%</td>
+          <td>80%</td>
+          <td>90%</td>
+        </tr>
+        <tr>
+          <th>November</th>
+          <td>50%</td>
+          <td>60%</td>
+          <td>70%</td>
+          <td>80%</td>
+          <td>90%</td>
+        </tr>
+        <tr>
+          <th>December</th>
+          <td>50%</td>
+          <td>60%</td>
+          <td>70%</td>
+          <td>80%</td>
+          <td>90%</td>
+        </tr>
+      </tbody>
+      <thead>
+        <tr>
+          <th></th>
+          <th>HTML</th>
+          <th>CSS</th>
+          <th>Javascript</th>
+          <th>Jquery</th>
+          <th>PHP</th>
+        </tr>
+      </thead>
+    </table>
+    <!-- Table: colspan | rowspan | colgroup/col -->
+    <table class="table3">
+      <caption>
+        Leaning Development
+      </caption>
+      <colgroup>
+        <!-- Must Be After Caption if Exist and Before thead/tbody/tfoot -->
+        <col span="2" style="background: khaki" />
+        <col span="3" style="background: mediumaquamarine" />
+        <col span="3" style="background: rebeccapurple" />
+      </colgroup>
+      <tr>
+        <th colspan="2">Web Design</th>
+        <th colspan="3">Web Develop</th>
+        <!-- ((colspan)) to Merge Columns -->
+      </tr>
+      <tr>
+        <td rowspan="2">HTML</td>
+        <td rowspan="2">CSS</td>
+        <td rowspan="2">PHP</td>
+        <td rowspan="2">Python</td>
+        <td>C#</td>
+        <!-- ((rowspan)) to Merge Rows in same block (thead / tbody / tfoot) -->
+      </tr>
+      <tr>
+        <td>C++</td>
+      </tr>
+      <tr>
+        <td>Javascript</td>
+        <td>Jquery</td>
+        <td>Node.js</td>
+        <td>C</td>
+        <td>.NET</td>
+      </tr>
+    </table>
+
+    <!-- Nested Table -->
+    <table>
+      <tr>
+        <td>
+          <table>
+            <tr>
+              <td>Nested Table</td>
+              <td>Nested Table</td>
+            </tr>
+            <tr>
+              <td>Nested Table</td>
+              <td>Nested Table</td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>Nested Table</td>
+              <td>Nested Table</td>
+            </tr>
+            <tr>
+              <td>Nested Table</td>
+              <td>Nested Table</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+
+    <!-- Entities -->
+
+    Copyright = <sup>&copy;</sup> Trademark = <sup>&reg;</sup>
+    Greater Than = &gt; Less Than = &lt; Euro = &euro; Cent = &cent; Yen = &yen; Pound = &pound; And = &amp; Space = &nbsp;
+
+    <!-- html5 have new semantic Tags, semantic(الدلالة اللفظية): is a tag with logic name and indicates for its use -->
+
+    <header></header>
+    <nav></nav>
+    <main></main>
+    <!-- unique tag, you can not put <main> inside other tags -->
+    <hgroup></hgroup>
+    <!-- group of headings/The <hgroup> HTML element represents a heading and related content. It groups a single <h1>–<h6> element with one or more <p> -->
+    <section></section>
+    <article></article>
+    <aside></aside>
+    <footer></footer>
+
+    <!-- menu: semantic alternative to <ul>, but treated by browsers as no different from <ul>. It represents an unordered list of items (which are represented by <li> elements) -->
+
+    <menu>
+      <li>Home</li>
+      <li>About</li>
+      <li>Contact</li>
+    </menu>
+
+    <!-- iframe: inline-block -- used to display a web page within a web page -->
+
+    <iframe name="W3" src="#" width="500" height="500"></iframe>
+
+    <!-- progress -->
+
+    <progress value="7" max="10"></progress>
+
+    <!-- meter: value takes negative -- default values: min = 0, max = 1 -- meter colors: green - yellow - red -- red => value>low>high>optimum OR value<low<high<optimum -->
+    <!-- https://codepen.io/pankajparashar/pen/Aoabmy -->
+    <!-- https://codepen.io/pankajparashar/pen/ALgGqm -->
+
+    <meter value=".7" min="0" max="1" low=".3" high=".8" optimum=".9"></meter>
+
+    <!-- details -->
+
+    <details open>
+      <!-- open: to open details by default -->
+      <summary>Web Design</summary>
+      <!-- to rename details word with 'web design' -->
+      anything
+    </details>
+
+    <!-- dialog: used to create a dialog box or window. The <dialog> element is a container for content that is intended to be visible to the user -- deal with javascript instead of popup -->
+
+    <dialog>html5 dialog</dialog>
+    <dialog open>
+      <p>html5 dialog</p>
+      <button>close</button>
+    </dialog>
+
+    <!-- figure: specifies self-contained content, like illustrations, diagrams, photos, code listings, etc / figcaption -->
+
+    <figure>
+      <img src="#" alt="" />
+      <figcaption>image #1</figcaption>
+    </figure>
+    <figure>
+      <figcaption>html code</figcaption>
+      <code>&lt;div class=""&gt;&lt;/div&gt;</code>
+    </figure>
+
+    <!-- time / timestamp -->
+
+    <time datetime="2017-10-29T16:20:55">Oct, 29th, 2017</time>
+    <time datetime="2017-10-29 16:20:55">Oct, 29th, 2017</time>
+
+    <!--
+      audio & video
+				controls: to show audio controls | autoplay: specifies whether the media should automatically start playing | loop: to replay audio when finish
+				muted: to start audio as muted | width | height | poster: to show an image before playing video
+				> src can take relative path or absolute path
+				> .vtt: video text track (Webvtt)
+				> mime type: type of audio/video/track file (mp3 - ogg - wav - ...)
+				> preload: specifies how the media resource should be loaded when the page loads [auto - none - metadata] (none: The media resource should not be preloaded. metadata: Only the metadata of the media resource should be preloaded (such as duration, track title, etc.), but not the media content itself. auto: The entire media resource should be preloaded, including both the metadata and the media content.)
+		-->
+    <article class="audio">
+      <h3>today's audio</h3>
+      <audio src="#.mp3/ogg/..." controls autoplay loop muted preload="auto">
+        your browser does not support audio technology
+        <!-- appear only in browsers does not support audio tech  -->
+      </audio>
+    </article>
+    <article class="audio">
+      <h3>today's audio</h3>
+      <audio controls autoplay loop muted preload="metadata">
+        <source src="#.mp3" type="audio/mpeg" />
+        <source src="#.ogg" type="audio/ogg" />
+        your browser does not support audio technology
+      </audio>
+    </article>
+    <section class="video">
+      <p>today's video</p>
+      <video src="#.mp4/ogg/webm/..." controls autoplay loop muted preload="none" width="250" height="250" poster="#">
+        <track src="#.vtt" kind="subtitles" srclang="en" label="english" />
+        <!-- srclang: language iso code -->
+        your browser does not support video technology
+        <!-- appear only in browsers does not support video tech  -->
+      </video>
+    </section>
+    <section class="video">
+      <p>today's video</p>
+      <video controls autoplay loop muted preload="auto" width="250" height="250" poster="#">
+        <source src="#.mp4" type="video/mp4" />
+        <source src="#.ogg" type="video/ogg" />
+        <source src="#.webm" type="video/webm" />
+        <track src="#.vtt" kind="chapters" srclang="en" label="english" />
+        <track src="#.vtt" kind="captions" srclang="ar" label="arabic" />
+        <track src="#.vtt" kind="subtitles" srclang="ar" label="arabic" />
+        your browser does not support video technology
+      </video>
+    </section>
+
+    <video src="#.mp4" preload="auto" autoplay></video>
+    <!-- This means that the video file example.mp4 should be preloaded in its entirety (metadata and media content) as soon as the page loads, and once it is ready, it should automatically start playing -->
+    <video src="#.mp4" preload="metadata" autoplay></video>
+    <!-- metadata loads only, need user to interacts with the video player (for example, by clicking the play button) to load media content. Since the video content itself has not been preloaded, there may be a delay or buffering as the video starts to play -->
+    <video src="#.mp4" preload="none" autoplay></video>
+    <!-- nothing will load (metadata and media content) but once the user interacts with the video player (for example, by clicking the play button) the video metadata and media content will load automatically -->
+    <!-- It's important to note that autoplay videos can be disruptive to users and negatively impact the user experience, especially if the user has limited bandwidth or is on a slow internet connection. Additionally, some web browsers may block autoplay of media by default, so it's a good idea to use autoplay with caution and provide alternative ways for users to start playing the video content if needed. -->
+
+    <!-- picture: for viewport, contains zero or more <source> elements and one <img> element to offer alternative versions of an image for different display/device scenarios -->
+    <picture>
+      <source srcset="#" media="(orientation: portrait)" type="image/avi" />
+      <source srcset="#" media="(min-width: 600px)" type="image/webp" />
+      <img src="#" alt="" />
+    </picture>
+
+    <!-- map: used to define a client-side image-map -->
+
+    <map name="infographic">
+      <area shape="poly" coords="130,147,200,107,254,219,130,228" href="https://developer.mozilla.org/docs/Web/HTML" target="_blank" alt="HTML" title="html" />
+      <area shape="poly" coords="130,147,130,228,6,219,59,107" href="https://developer.mozilla.org/docs/Web/CSS" target="_blank" alt="CSS" title="css" />
+      <area shape="poly" coords="130,147,200,107,130,4,59,107" href="https://developer.mozilla.org/docs/Web/JavaScript" target="_blank" alt="JavaScript" title="js" />
+    </map>
+    <img usemap="#infographic" src="#" alt="MDN infographic" />
+    <map name="primary">
+      <area shape="circle" coords="75,75,75" href="https://developer.mozilla.org/docs/Web/JavaScript" target="_blank" alt="JavaScript" title="js" />
+      <area shape="circle" coords="275,75,75" href="https://developer.mozilla.org/docs/Web/CSS" target="_blank" alt="CSS" title="css" />
+    </map>
+    <img usemap="#primary" src="#" alt="350 x 150 picture of two parrots" />
+
+    <!-- Object -->
+
+    <object type="video/mp4" data="https://www.youtube.com/watch?v=Sp9ZfSvpf7A" width="1280" height="720"></object>
+    <!-- used to embed objects such as images, videos, Java applets, ActiveX, PDF, and Flash into the document. -->
+
+    <!-- Embed -->
+
+    <embed type="video/webm" src="#.mp4" width="250" height="200" title="Title of my video" />
+    <!-- defines a container for an external application or interactive content (a plug-in) / embeds external content at the specified point in the document. This content is provided by an external application or other source of interactive content such as a browser plug-in -->
+
+    <portal></portal>
+    <!-- enables the embedding of another HTML page into the current one for the purposes of allowing smoother navigation into new pages, similar to iframe -->
+
+    <template></template>
+    <!-- used to declare fragments of HTML that can be cloned and inserted in the document by script -->
+
+    <slot></slot>
+    <!-- used to define a specific area in which a user can enter data -->
+
+    <canvas></canvas>
+    <!-- used to draw graphics, on the fly, via scripting (usually JavaScript). -->
+
+    <svg></svg>
+    <!-- Scalable Vector Graphics -->
+
+    <!-- Form -->
+    <!--
+		> form attributes
+			>> name : to identify form
+			>> method : get - post - dialog
+			>> action : to determine where to send data to server, relative path or absolute path -- default is current page
+			>> enctype : application/x-www-form-urlencoded - multipart/form-data - text/plain -- default is application/x-www-form-urlencoded
+			>> target : _blank - _self - _parent - _top - framename -- default is _self (open in same window)
+			>> novalidate : to disable validation on form -- default is off
+			>> autocomplete : on - off -- default is on
+			>> autocapitalize : on - off - none - sentences - words - characters -- default is none
+			>> accept-charset : to determine type of character to send to server -- default is utf-8
+			>> on[event] : to handle an event (onsubmit, onreset, onfocus, onblur, onchange, onselect, oninput, oninvalid, onsearch, .....)
+
+			- enctype (encoding type): application/x-www-form-urlencoded (default encoding) => convert special character to (ascii hex value) and convert spaces to + -- multipart/form-data => used with <input type="file"> when uploading a file, do not encode characters -- text/plain => do not encode character but convert spaces to + , only use for debugging
+			- target:  _self (default target) => open in same window -- _blank => open in new window -- _parent => open in parent frame -- _top => open in full body of the window -- framename => open in specified frame
+			- method: get (default method) => send data to server in url (not secure) -- post => send data to server in body (secure) -- dialog => open dialog box to send data to server (not supported in all browsers)
+
+		> input attributes
+			>> formaction : override original form action -- work only with submit and image
+			>> formmethod : override original form method -- work only with submit and image
+			>> formenctype :  override original form enctype -- work only with submit and image
+			>> formnovalidate :  override original form validation -- work only with submit and image
+			>> formtarget : override original form target -- work only with submit and image
+			>> autocomplete : on - off -- default is on
+			>> autocapitalize : on - off - none - sentences - words - characters -- default is none
+			>> autofocus : to focus on input when page open, only one input can have autofocus -- default is off
+			>> disabled : do not send to server
+			>> readonly : do not work with (hidden / range / color / checkbox / radio / file / submit)
+			>> hidden : to hide input
+			>> required : must fill it
+			>> checked : <radio><checkbox> -- to check radio button or checkbox by default (default is off) -- can't be used with radio/checkbox outside <form>
+			>> selected : <option> -- to select option by default
+			>> placeholder : to show hint in input
+			>> maxlength : to Determination max character
+			>> minlength : to Determination min character
+			>> multiple : file & email & select (default is off)
+			>> form : to link between <form> and <input> outside it with id
+			>> min : to determine min value -- can be negative
+			>> max : to determine max value -- can be negative
+			>> step : to determine step between min and max -- default is 1 -- can be negative
+			>> pattern : RegExp -- work with (text - search - tel - url - email)
+			>> size : to determine number of characters inside input
+			>> cols : to determine number of columns inside textarea
+			>> rows : to determine number of rows inside textarea
+			>> accept : to determine type of file to upload -- work with <input type="file"> -- default is all file types -- can be multiple type (image/*,video/*)
+			>> list : to link between <datalist> and <input> with id
+			>> name : to send data to server with name
+			>> value : to send data to server with value
+			>> id : to link between <label> and <input> with for attribute
+			>> for : to link between <label> and <input>
+			>> inputmode : text - none - decimal - numeric - tel - search - email - url -- default is text
+		-->
+
+    <form name="contactMe" action="mailto:amrats1007@gmail.com" method="post" enctype="text/plain" accept-charset="UTF-8">
+      <!-- you can use mail app or use gmail[Settings => Privacy and security => Site settings => Protocol handlers => Sites can ask to handle protocols and delete gmail from the list below(not allowed) if exists => open gmail and click on handle protocols icon and set it to allow] -->
+      <label>your name: <input type="text" name="name" /> </label><br />
+      <label>your email: <input type="email" name="email" /> </label><br />
+      <label
+        >your message:
+        <textarea name="message" rows="5" cols="10"></textarea>
+      </label>
+      <input type="submit" />
+    </form>
+
+    <form class="form" id="registration1" name="registration2" target="_blank" action="" method="post" enctype="multipart/form-data" novalidate oninput="result1.value = parseInt(age1.value) * parseInt(days1.value) + ' day'" autocomplete="off" autocapitalize="words">
+      <fieldset>
+        <!-- used to group related elements in a form -->
+
+        <legend>Personal Information</legend>
+        <!-- used to describe the <fieldset> element -->
+
+        <!-- text -->
+        <label
+          >Username
+          <input type="text" name="username" value="" placeholder="Username" maxlength="30" autofocus autocapitalize="words" />
+          <!-- autocapitalize: on / off / none / sentences / words / characters - default is none -->
+        </label>
+
+        <!-- password -->
+        <label
+          >Password
+          <input type="password" name="password" value="" placeholder="Password" maxlength="10" autocomplete="off" />
+        </label>
+
+        <!-- email -->
+        <label
+          >email
+          <input type="email" name="" value="" placeholder="email" inputmode="email" />
+          <!-- inputmode: text / none / decimal / numeric / tel / search / email / url -- default is text -- Provides a hint as to the type of data that might be entered by the user while editing the element or its contents. The attribute can be used with form controls (such as the value of textarea elements), or in elements in an editing host (e.g., using contenteditable attribute) -->
+        </label>
+
+        <!-- tel -->
+        <label for="tel"
+          >telephone
+          <input id="tel" type="tel" name="" value="" placeholder="telephone" pattern="[a-z]{11}" />
+        </label>
+
+        <!-- number -->
+        <label
+          >Age
+          <input type="number" name="" value="" min="30" max="80" step="10" placeholder="age" />
+          <!-- needs javascript code to make perfect validation -->
+        </label>
+
+        <!-- url -->
+        <label
+          >website <input type="url" name="" value="" placeholder="website" />
+          <!-- http/s://www.#####.com -->
+        </label>
+
+        <!-- Select: contains optgroup/options -->
+        <label
+          >Gender
+          <select name="gender" size="4" disabled multiple>
+            <optgroup label="what">
+              <option value="">Male</option>
+              <!-- option can have attributes such as selected and disabled -->
+              <option value="" selected>Female</option>
+              <option value="">Male</option>
+              <option value="">Female</option>
+            </optgroup>
+            <optgroup label="when" disabled>
+              <!-- optgroup can have attributes such as disabled -->
+              <option value="">Male</option>
+              <option value="">Female</option>
+              <option value="">Male</option>
+            </optgroup>
+            <optgroup label="where">
+              <option value="">Female</option>
+              <!-- every option must have value -->
+              <option value="">Male</option>
+              <option value="" disabled>Female</option>
+            </optgroup>
+          </select>
+        </label>
+
+        <!-- checkbox -->
+        <label> <input type="checkbox" name="save login info" value="" checked /> </label>Save Login Info
+
+        <!-- hidden: submitted with form -->
+        <label>
+          <input type="hidden" name="hidden" value="testing" />
+        </label>
+      </fieldset>
+
+      <br />
+
+      <fieldset>
+        <legend>Configurations</legend>
+
+        <!-- image -->
+        <label>
+          Choose Your Seat
+          <input type="image" src="#" alt="amr name" title="amr name 1" style="display: block" />
+          <!-- auto submit -->
+        </label>
+
+        <!-- search -->
+        <label>
+          <input type="search" name="" value="" size="55" />
+        </label>
+
+        <!-- file -->
+        <label>
+          Upload CV <input type="file" name="upload cv" multiple accept="" />
+          <!-- it has no value to rename "choose file" -->
+        </label>
+
+        <!-- Radio: it must have name & value -->
+        <label>
+          Choose your favorite os
+          <label><input type="radio" name="OS" value="Mac" />MaC</label>
+          <label for="win2"><input id="win2" type="radio" name="OS" value="windows" />Windows</label>
+          <label><input type="radio" name="OS" value="linux" checked />Linux</label>
+        </label>
+
+        <!-- checkbox -->
+        <label>
+          Choose your favorite food
+          <label><input type="checkbox" name="food" value="banana" />banana</label>
+          <label for="win3"><input id="win3" type="checkbox" name="food" value="beans" checked />beans</label>
+          <label><input type="checkbox" name="food" value="apple" />apple</label>
+        </label>
+
+        <!-- color -->
+        <label
+          >select your color <input type="color" name="" value="#00f000" />
+          <!-- value takes complete color hex code -- default value is black -->
+        </label>
+
+        <!-- range -->
+        <label
+          >feedback
+          <input type="range" name="feedback" value="1" min="0" max="10" step="2" />
+        </label>
+      </fieldset>
+
+      <br />
+
+      <fieldset>
+        <legend>Message</legend>
+
+        <!-- Textarea: it has no value -->
+        <label
+          >Type Your Message Here <br /><br />
+          <textarea name="textarea" rows="10" cols="50" placeholder="type here" class="textarea" readonly maxlength="50">yor name:</textarea>
+        </label>
+
+        <!-- datalist: instead of using ajax tech with suggestion -- used to provide an "autocomplete" feature on <input> elements -->
+        <label><input list="browsers" /></label>
+        <datalist id="browsers">
+          <option value="chrome">grf</option>
+          <option value="firefox">rare</option>
+          <option value="opera">sdf ds</option>
+          <option value="safari">ewe</option>
+        </datalist>
+
+        <!-- output: oninput(event) in form tag -- one output tag in form is allowed -- used to represent the result of a calculation -->
+        <label>
+          <input type="number" name="age1" />
+          <input type="hidden" name="days1" value="365" />
+          <output name="result1"></output>
+        </label>
+
+        <!-- date -->
+        <label>
+          <input type="date" name="" value="" step="2" />
+        </label>
+
+        <!-- time -->
+        <label>
+          <input type="time" name="" value="" step="8" />
+        </label>
+
+        <!-- datetime-local -->
+        <label>
+          <input type="datetime-local" name="" value="" step="2" />
+        </label>
+
+        <!-- month -->
+        <label>
+          <input type="month" name="" value="" step="4" />
+        </label>
+
+        <!-- week -->
+        <label>
+          <input type="week" name="" value="" step="3" />
+        </label>
+      </fieldset>
+
+      <br />
+
+      <fieldset>
+        <legend>Send Options</legend>
+
+        <!-- submit -->
+        <label>
+          <input type="submit" name="register" value="sign in" />
+          <!-- default submit -->
+        </label>
+
+        <label>
+          <input type="submit" name="register" value="sign in" formaction="#.php" />
+        </label>
+
+        <label>
+          <input type="submit" name="register" value="sign in" formmethod="get" />
+        </label>
+
+        <label>
+          <input type="submit" name="register" value="sign in" formenctype="multipart/form-data" />
+        </label>
+
+        <label>
+          <input type="submit" name="register" value="sign in" formtarget="_self" />
+        </label>
+
+        <label>
+          <input type="submit" name="register" value="sign in" formnovalidate />
+        </label>
+
+        <!-- button -->
+        <label>
+          <input type="button" name="register" value="sign in" onclick="submit()" />
+          <!-- submit with event -->
+        </label>
+
+        <label>
+          <input type="button" name="say hello" value="say hello" onclick="sayHello()" inert />
+          <!-- inert: it is not clickable/disable interactive elements on a web page -->
+        </label>
+
+        <label>
+          <button name="register">sign in</button>
+          <!-- auto submit like <input type="submit"> & <input type="button"> with event -->
+        </label>
+
+        <button accesskey="s">Stress reliever</button>
+        <!-- Defines a keyboard shortcut for an element. The accesskey attribute specifies a shortcut key to activate/focus an element. The value of the accesskey attribute must be a single character from the document character set -->
+
+        <!-- reset -->
+        <label>
+          <input type="reset" name="reset" value="restore" />
+        </label>
+      </fieldset>
+    </form>
+
+    <!-- element outside form -->
+    <label>
+      <input type="text" name="" value="" form="registration1" />
+    </label>
+
+    <!-- Javascript 02 -->
+
+    <!-- I can also put script code in this place, and it is preferred -->
+    <script src=""></script>
+    <!-- The type and language attributes are not required -->
+    <!-- defines an alternate content for users that have disabled scripts in their browser or have a browser that doesn't support script. -->
+    <noscript>Your browser does not support JavaScript!</noscript>
+    <!--
+		Modern markup
+		The <script> tag has a few attributes that are rarely used nowadays but can still be found in old code:
+		- The type attribute: <script type=…>
+		The old HTML standard, HTML4, required a script to have a type. Usually it was type="text/javascript". It’s not required anymore. Also, the modern HTML standard totally changed the meaning of this attribute. Now, it can be used for JavaScript modules.
+		- The language attribute: <script language=…>
+		This attribute was meant to show the language of the script. This attribute no longer makes sense because JavaScript is the default language. There is no need to use it.
+		-->
+    <!-- Comments before and after scripts - In really ancient books and guides, you may find comments inside <script> tags, like this: -->
+    <script type="text/javascript" language="javascript">
+      <!--
+      code;
+      -->
+    </script>
+    <!-- This trick isn’t used in modern JavaScript. These comments hide JavaScript code from old browsers that did not know how to process the <script> tag. Since browsers released in the last 15 years don’t have this issue, this kind of comment can help you identify ancient code -->
+  </body>
+
+  <!-- End Of body -->
+</html>
+<!-- Closing/End Tag -->
