@@ -1,0 +1,31 @@
+web server
+
+A web server is a software program that runs on a computer or a network and is responsible for delivering web pages or other content to clients that request it via the World Wide Web (WWW) using the Hypertext Transfer Protocol (HTTP) or other protocols.
+
+When a client, such as a web browser, sends a request to a web server for a webpage or other content, the web server responds by sending the requested data back to the client over the internet. Web servers typically host websites or web applications and can handle multiple requests simultaneously from multiple clients.
+
+Common web servers include Apache, Nginx, IIS, and Node.js, and they are an essential component of the internet and the World Wide Web.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+file path
+
+> absolute path => fully qualified path => https://www.google.com/index.html -- file://C:/Users/Amr/Desktop/boilerplate.html - It's a path that is relative to the root of the computer (hard drive [C:, D:, ....] in case of computer). An absolute file path is really useful when you're navigating on a computer because no matter where you are currently within the file structure, you could be currently in the project folder, you could be in the index.html, you can be at any part of the computer. You can always tell them this absolute file path and the computer would know how to go from the very beginning into that destination that you specified.
+
+> relative path => path relative to current position => ./boilerplate.html -- ../boilerplate.html -- /boilerplate.html - usually relative paths are a little bit shorter. And also more importantly, it doesn't matter if you move your folders around, it's always going to be valid. In web development, when we're referring to a particular resource, say we want to bring up an image or sound or a movie or another HTML file for that matter. We usually will use a relative file path.
+  >> special characters: ./flower.png => current directory (same level) or flower.png directly but ./ is better and working 100% -- ../flower.png => parent directory (one level up) -- / => root directory (top level) or Amr/Desktop/boilerplate.html to access child directory relative to my current starting point
+
+> URL => Uniform Resource Locator, uniform for standardized - resource for a file or other data object - locator for address for finding something
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+CDN
+
+CDN stands for Content Delivery Network. It is a distributed network of servers that work together to deliver content, such as images, videos, and web pages, to users based on their geographic location. The goal of a CDN is to reduce latency and improve website performance by delivering content from servers that are closer to the user.
+
+When a user requests content from a website, the request is routed to the nearest server in the CDN, which then delivers the content to the user. This reduces the amount of time it takes for the content to load, as the user is accessing content from a server that is physically closer to them.
+
+CDNs are commonly used by websites that have a global audience, or that deliver large amounts of content such as video streaming services. By using a CDN, these websites can provide a faster and more reliable user experience, while also reducing the load on their own servers.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
