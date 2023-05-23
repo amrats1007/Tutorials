@@ -5573,7 +5573,7 @@ Usage Analysis: The compiler analyzes how variables and functions are used throu
 
 Reachability Analysis: The compiler performs a static analysis of the program's control flow graph to determine which portions of code are reachable from the entry point. Any code that is not reachable is considered dead and can be safely eliminated.
 
-Constant Propagation: The compiler propagates constant values through the program and identifies code that can be determined at compile-time. If a piece of code is only reachable with constant values that do not change the program's behavior, it can be eliminated.
+Constant Propagation: The compiler propagates constant values through the program and identifies code that can be determined at compile time. If a piece of code is only reachable with constant values that do not change the program's behavior, it can be eliminated.
 
 Unused Variable Elimination: The compiler identifies variables that are declared but never used within the program. Such variables are considered dead and can be safely removed.
 
@@ -5620,7 +5620,7 @@ int main() {
   return 0;
 }
 /*
-In this code, the expression a + b is a constant expression because both a and b are declared as const int and have known values at compile-time. During the compilation process, the compiler will evaluate a + b and replace result with the computed value 15. As a result, the compiled code will be equivalent to:
+In this code, the expression a + b is a constant expression because both a and b are declared as const int and have known values at compile-time. During the compilation process, the compiler will evaluate a + b and replace the result with the computed value 15. As a result, the compiled code will be equivalent to:
 */
 #include <iostream>
 int main() {
