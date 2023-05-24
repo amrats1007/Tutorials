@@ -1,17 +1,5 @@
 /*
-> A computer program is like a recipe. So when we write programs, we need to be very, very explicit about what we want the computer to do.
-
-> A program is a set of instructions that a computer executes to solve a problem.
-
-> A set of precise steps for solving a problem is known as an Algorithm.
-
-> Programmers often use something called pseudocode. Pseudocode is like an English-like or your own natural spoken language-like representation of the algorithm or the steps necessary to solve the problem. It's not a programming language. It's just a way to express the algorithm in a way that's understandable by humans.
-
-> Refactoring means changing your code to make it better without changing behavior, that's really important. Refactoring does not change the behavior of your code(logic), it just makes your code better, more modifiable, easier to read, and so forth.
-
 > C++ is a compiled language. or compile-time not run-time like python or javascript. So when we write C++ programs, we need to compile them first before we can run them.
-
-> Integrated development environments (IDE) are programs that allow us to do everything from a common interface. IDEs are programs that provide an editor with a way to compile, link and execute your source code. They also often have debuggers that can help you understand your code and fix errors. IDEs also help us keep our files in sync and provide hooks to version control systems such as git and subversion.
 */
 
 /*
@@ -21,16 +9,20 @@ C++ features
   >> Most of SW is still written in C++
   >> C++ Ranking is consistently high, look at(Programming Language Popularity Indexes)
   >> Active community (GitHub Repos, StackOverflow)
+
 > relevant
   >> There are many, many leading software titles written entirely or partly in C++. like Windows, Linux, and macOS 10 operating systems
   >> Many Adobe products such as Photoshop and Illustrator are written in C++
   >> The MySQL and MongoDB database engines and many, many more written in C++
   >> Leading tech companies use C++ for many of their products and internal research and development. These include Amazon, Apple, Microsoft, PayPal, Google, Facebook, Oracle, and more
-  >> In many cases, these are the engines that drive many popular frameworks. For example, engines for virtual reality, the unreal game engine, machine learning, network and telecom, and more
+  >> Engines that drive many popular frameworks. For example, engines for virtual reality, the unreal game engine, machine learning, network and telecom, and more
+
 > powerful
   >> C++ (a root programming language) is super-fast, and it is a general-purpose programming language that supports both procedural and object-oriented programming making it very flexible and powerful, It scales easily, and it can also be portable
+
 > career
   >> C++ = salary++
+
 > With all this power and flexibility comes complexity, there's no question that C++ is one of the most complex programming languages out there.
 */
 
@@ -38,12 +30,14 @@ C++ features
 C++ standards
 
 > 1970: Dennis Ritchie created the c programming language at Bell Labs. The development of c was closely tied to the development of the UNIX operating system.
+
 > Classical C++
   >> 1979: Bjarne Stroustrup working on what became C++. He initially called it c with classes. His idea was to add to C object-oriented features that he knew from a language called similar.
   >> 1983: the name was changed to C++
   >> 1989: the first commercial release
   >> 1998: the c++ standards committee published the first c++ standard. informally known as C++98
   >> 2003: C++03
+
 > Modern C++ [Bjarne Stroustrup described modern C++ as a new language with modern abstractions for ease of use and power. Along with the language features themselves, modern C++ is also about best practices and core guidelines]
   >> 2011: C++11
   >> 2014: C++14
@@ -57,15 +51,111 @@ C++ standards
 Build Process
 
 > Source code(translation unit): The code we write using programming editors. C++ programs have an extension like .cpp .h .cc .hpp and there are several others like .c .cxx .c++ .H .hh .hxx .h++
+
   >> A translation unit refers to the basic unit of source code that is processed by the compiler. it is a single source code file and all the header files it includes directly or indirectly.
+
   >> When you compile a C++ program, each translation unit is compiled separately into an object file, and then these object files are linked together to create an executable file.
+
   >> The concept of a translation unit is important because it determines the scope of identifiers in your code. Identifiers (such as variables, functions, and classes) defined in one translation unit are not visible in other translation units unless they are explicitly declared as external. This is known as the one-definition rule which is important because it allows the compiler to optimize your code by eliminating duplicate definitions of identifiers. It also prevents you from accidentally defining the same identifier in multiple translation units, which would cause a linker error.
+
   >> Once the preprocessor has processed the translation unit, the resulting code is passed on to the compiler for further compilation and translation into object code.
 
 > Compiler: The C++ compiler is a program that takes as input C++ source code(translation unit) and produces object code as output for each C++ source file. If the source code has errors, then no object code is produced. the compiler also performs optimizations to improve the performance of the generated code. These optimizations can include dead code elimination, constant folding, and loop unrolling.
-  >> Dead code elimination is an optimization technique performed by compilers to remove portions of code that do not affect the program's behavior or output. +
-  >> Constant folding is an optimization technique used by C++ compilers to evaluate constant expressions at compile-time rather than at runtime. It involves replacing the constant expressions with their computed values during the compilation process, resulting in more efficient code execution. +
-  >> Loop unrolling is a compiler optimization technique that aims to improve the performance of loops by reducing the overhead associated with loop control. In C++, loop unrolling can be achieved manually by the programmer or automatically by the compiler. +
+
+  >> Dead code elimination is an optimization technique performed by compilers to remove portions of code that do not affect the program's behavior or output.
+
+    >>> This process helps improve the overall performance and efficiency of the compiled program by reducing the executable's size, improving runtime performance, and eliminating unnecessary computations.
+    >>> In C++, dead code elimination is typically performed by modern optimizing compilers.
+    >>> Dead code elimination typically occurs during the optimization phase of compilation.
+    >>> The following are some common techniques used for dead code elimination in C++ compilers: Static Analysis, Usage Analysis, Reachability Analysis, Conditional Branch Analysis, Constant Propagation, Unused Variable Elimination, Function Inlining, Optimistic Assumptions and Whole Program Optimization.
+    >>> Here's a general overview of how dead code elimination works in a C++ compiler: Parsing and Control Flow Analysis, Liveness Analysis, Marking Dead Code, and Removal of Dead Code.
+    >>> It's important to note that dead code elimination is a complex process, and different compilers may implement their own strategies or variations of the techniques mentioned above. Additionally, the level of optimization performed by a compiler can be controlled through compiler flags and optimization settings.
+    >>> Additionally, dead code elimination can be influenced by compiler settings and optimization levels. Higher optimization levels, such as [-O2] or [-O3], may enable more aggressive dead code elimination techniques.
+  >> Constant folding is an optimization technique used by C++ compilers to evaluate constant expressions at compile-time rather than at runtime. It involves replacing the constant expressions with their computed values during the compilation process, resulting in more efficient code execution.
+    >>> In C++, constant folding can be performed by the compiler when it can determine that the values involved in an expression are known at compile-time and will not change during program execution. The compiler analyzes the code and replaces the expression with its evaluated result, effectively replacing the computation with a constant value.
+    >>> When the compiler encounters constant expressions, such as mathematical operations involving literals or known variables, it can perform the calculations and substitute the result directly into the code. This eliminates the need to perform the computations at runtime, reducing the execution time and potentially improving the overall performance of the program.
+    >>> Constant folding can also handle more complex expressions, such as those involving variables and constants. However, the compiler can only perform constant folding if it can determine that the involved variables are constants or have constant values at compile time. If the variable values cannot be determined at compile time, the folding cannot be applied.
+    >>> By performing constant folding, the compiler eliminates unnecessary runtime computations and reduces the program's memory and CPU requirements, leading to more efficient code execution.
+  # example 1
+  int result = 5 + 7;
+  During compilation, the compiler can determine that both operands of the addition operator are constants. Therefore, it can perform the addition at compile-time and replace the expression with the result:
+  int result = 12;
+  # example 2
+  int result = 2 + 3 * 4; 
+  During compilation, the compiler can apply constant folding to simplify the expression 2 + 3 * 4 to 14. The resulting assembly code would then assign the value 14 directly to the result variable, avoiding the need to perform the arithmetic operations at runtime.
+  # example 3
+  #include <iostream>
+  int main() {
+    const int a = 5;
+    const int b = 10;
+    const int result = a + b; // Constant expression: 5 + 10
+    std::cout << "Result: " << result << std::endl;
+    return 0;
+  }
+  In this code, the expression a + b is a constant expression because both a and b are declared as const int and have known values at compile-time. During the compilation process, the compiler will evaluate a + b and replace the result with the computed value 15. As a result, the compiled code will be equivalent to:
+  #include <iostream>
+  int main() {
+    const int a = 5;
+    const int b = 10;
+    const int result = 15; // The expression is folded to its computed value
+    std::cout << "Result: " << result << std::endl;
+    return 0;
+  }
+  >> Loop unrolling is a compiler optimization technique that aims to improve the performance of loops by reducing the overhead associated with loop control. In C++, loop unrolling can be achieved manually by the programmer or automatically by the compiler.
+    >>> Manual Loop Unrolling: it involves rewriting the loop body multiple times, each iteration handling multiple loop iterations.
+    >>> Automatic Loop Unrolling: Modern C++ compilers can automatically apply loop unrolling optimizations based on the optimization level specified during compilation. The specific behavior and effectiveness of automatic loop unrolling may vary across different compilers. To enable loop unrolling with popular compilers like GCC or Clang, you can use compiler-specific flags such as (-funroll-loops) for GCC or Clang. For example: [g++ -O2 -funroll-loops myfile.cpp -o myfile] The (-O2) flag specifies the optimization level, and (-funroll-loops) requests loop unrolling.
+    >>> Loop unrolling can be beneficial for performance-critical code that contains loops with a small number of iterations. By unrolling the loop, we can reduce the number of loop control instructions and improve the efficiency of the loop body. However, it's important to note that the benefits of loop unrolling can vary depending on the specific computation and the compiler's optimization capabilities.
+  # example 1
+  #include <iostream>
+  // Original loop
+  void originalLoop() {
+    for (int i = 0; i < 10; i++) {
+        std::cout << "Iteration: " << i << std::endl;
+    }
+  }
+  // Unrolled loop
+  void unrolledLoop() {
+    for (int i = 0; i < 10; i += 2) {
+      std::cout << "Iteration: " << i << std::endl;
+      std::cout << "Iteration: " << (i + 1) << std::endl;
+    }
+  }
+  int main() {
+    std::cout << "Original Loop:" << std::endl;
+    originalLoop();
+    std::cout << std::endl;
+    std::cout << "Unrolled Loop:" << std::endl;
+    unrolledLoop();
+    return 0;
+  }
+  In the above example, the original loop iterates 10 times, whereas the unrolled loop performs two iterations at a time, reducing the number of loop control instructions.
+  # example 2
+  #include <iostream>
+  // Original loop
+  void originalLoop() {
+    int sum = 0;
+    for (int i = 0; i < 10; i++) {
+      sum += i;
+    }
+    std::cout << "Sum (original loop): " << sum << std::endl;
+  }
+  // Unrolled loop
+  void unrolledLoop() {
+    int sum = 0;
+    for (int i = 0; i < 10; i += 2) {
+      sum += i + (i + 1);
+    }
+    std::cout << "Sum (unrolled loop): " << sum << std::endl;
+  }
+  int main() {
+    std::cout << "Original Loop:" << std::endl;
+    originalLoop();
+    std::cout << std::endl;
+    std::cout << "Unrolled Loop:" << std::endl;
+    unrolledLoop();
+    return 0;
+  }
+  By unrolling the loop, we reduce the overhead of loop control instructions and improve the efficiency of the summation operation. Keep in mind that the benefits of loop unrolling can vary depending on the specific computation and the compiler's optimization capabilities.
 
 > Object Code: (0 1) computer code - .obj extension on Windows, .o extension on UNIX and MAC
   >> Just as humans aren't very good at reading computer code, computers aren't very good at reading source code. We need to translate the source code into a form that's understandable by the computer. This form is called object code, and the compiler is the translator.
@@ -5551,153 +5641,6 @@ int test_function_activation_count() {
 /***************************************************************************************************************************/
 
 /* Additional explanation */
-//-----------------------//
-
-// Dead Code Elimination
-
-/*
-> This process helps improve the overall performance and efficiency of the compiled program by reducing the executable's size, improving runtime performance, and eliminating unnecessary computations.
-> In C++, dead code elimination is typically performed by modern optimizing compilers.
-> The following are some common techniques used for dead code elimination in C++ compilers: Reachability Analysis, Constant Propagation, Unused Variable Elimination, Function Inlining, Conditional Branch Analysis, and Optimistic Assumptions.
-> It's important to note that dead code elimination is a complex process, and different compilers may implement their own strategies or variations of the techniques mentioned above. Additionally, the level of optimization performed by a compiler can be controlled through compiler flags and optimization settings.
-> Dead code elimination typically occurs during the optimization phase of compilation.
-> Here's a general overview of how dead code elimination works in a C++ compiler: Parsing and Control Flow Analysis, Liveness Analysis, Marking Dead Code, and Removal of Dead Code.
-> Additionally, dead code elimination can be influenced by compiler settings and optimization levels. Higher optimization levels, such as [-O2] or [-O3], may enable more aggressive dead code elimination techniques.
-*/
-
-// Dead code elimination techniques
-
-/*
-> Static Analysis: The compiler performs a static analysis of the code to determine which parts are dead code. This analysis involves inspecting the control flow and data dependencies of the program.
-
-> Usage Analysis: The compiler analyzes how variables and functions are used throughout the code. If a variable is assigned a value but never used, or if a function is declared but never called, they are marked as dead code.
-
-> Reachability Analysis: The compiler performs a static analysis of the program's control flow graph to determine which portions of code are reachable from the entry point. Any code that is not reachable is considered dead and can be safely eliminated.
-
-> Constant Propagation: The compiler propagates constant values through the program and identifies code that can be determined at compile time. If a piece of code is only reachable with constant values that do not change the program's behavior, it can be eliminated.
-
-> Unused Variable Elimination: The compiler identifies variables that are declared but never used within the program. Such variables are considered dead and can be safely removed.
-
-> Function Inlining: Inlining refers to the process of replacing a function call with the actual function body. If a function is determined to be dead because it is never called or only called with constant values that do not affect the program's behavior, the compiler can eliminate the function and replace the calls with the corresponding code.
-
-> Conditional Branch Analysis: The compiler analyzes conditional branches and determines the conditions that are always true or false based on the available information. If a branch is found to be always true or false, the corresponding code can be eliminated.
-
-> Optimistic Assumptions: Compilers may make assumptions about the program's behavior based on static analysis. If these assumptions hold true, the corresponding code can be eliminated. However, if the assumptions are violated during runtime, the compiler should have mechanisms to handle such scenarios.
-
-> Whole Program Optimization: In some cases, dead code elimination is performed across the entire program, considering all translation units and linking stages. This allows the compiler to optimize based on the global program behavior.
-*/
-
-// Dead code elimination How to Work
-
-/*
-> Parsing and Control Flow Analysis: The compiler's front end parses the source code, building an abstract syntax tree (AST) and performing control flow analysis. This analysis determines the flow of execution and identifies reachable code blocks.
-
-> Liveness Analysis: The compiler performs liveness analysis to determine which variables are actively used or "live" at each program point. Variables that are not live at any point can be considered dead.
-
-> Marking Dead Code: The compiler marks code segments or individual statements as dead if they are unreachable or if they operate on dead variables. Unreachable code can be due to conditional statements that are always true or false, or code following a return statement, among other cases.
-
-> Removal of Dead Code: Once the dead code is identified, the compiler eliminates it from the intermediate representation or generates optimized machine code that excludes the dead portions. This removal typically involves updating the control flow graph and reassigning labels or adjusting jump instructions accordingly.
-*/
-
-// Constant Folding
-
-/*
-> In C++, constant folding can be performed by the compiler when it can determine that the values involved in an expression are known at compile-time and will not change during program execution. The compiler analyzes the code and replaces the expression with its evaluated result, effectively replacing the computation with a constant value.
-> When the compiler encounters constant expressions, such as mathematical operations involving literals or known variables, it can perform the calculations and substitute the result directly into the code. This eliminates the need to perform the computations at runtime, reducing the execution time and potentially improving the overall performance of the program.
-> Constant folding can also handle more complex expressions, such as those involving variables and constants. However, the compiler can only perform constant folding if it can determine that the involved variables are constants or have constant values at compile time. If the variable values cannot be determined at compile time, the folding cannot be applied.
-*/
-
-int result = 5 + 7;
-/*
-During compilation, the compiler can determine that both operands of the addition operator are constants. Therefore, it can perform the addition at compile-time and replace the expression with the result:
-*/
-int result = 12;
-
-int result = 2 + 3 * 4; 
-/*
-During compilation, the compiler can apply constant folding to simplify the expression 2 + 3 * 4 to 14. The resulting assembly code would then assign the value 14 directly to the result variable, avoiding the need to perform the arithmetic operations at runtime.
-*/
-
-#include <iostream>
-int main() {
-  const int a = 5;
-  const int b = 10;
-  const int result = a + b; // Constant expression: 5 + 10
-  std::cout << "Result: " << result << std::endl;
-  return 0;
-}
-/*
-In this code, the expression a + b is a constant expression because both a and b are declared as const int and have known values at compile-time. During the compilation process, the compiler will evaluate a + b and replace the result with the computed value 15. As a result, the compiled code will be equivalent to:
-*/
-#include <iostream>
-int main() {
-  const int a = 5;
-  const int b = 10;
-  const int result = 15; // The expression is folded to its computed value
-  std::cout << "Result: " << result << std::endl;
-  return 0;
-}
-
-// Loop Unrolling
-
-/*
-> Manual Loop Unrolling: it involves rewriting the loop body multiple times, each iteration handling multiple loop iterations.
-> Automatic Loop Unrolling: Modern C++ compilers can automatically apply loop unrolling optimizations based on the optimization level specified during compilation. The specific behavior and effectiveness of automatic loop unrolling may vary across different compilers. To enable loop unrolling with popular compilers like GCC or Clang, you can use compiler-specific flags such as (-funroll-loops) for GCC or Clang. For example: [g++ -O2 -funroll-loops myfile.cpp -o myfile] The (-O2) flag specifies the optimization level, and (-funroll-loops) requests loop unrolling.
-*/
-#include <iostream>
-
-// Original loop
-void originalLoop() {
-  for (int i = 0; i < 10; i++) {
-      std::cout << "Iteration: " << i << std::endl;
-  }
-}
-// Unrolled loop
-void unrolledLoop() {
-  for (int i = 0; i < 10; i += 2) {
-    std::cout << "Iteration: " << i << std::endl;
-    std::cout << "Iteration: " << (i + 1) << std::endl;
-  }
-}
-int main() {
-  std::cout << "Original Loop:" << std::endl;
-  originalLoop();
-  std::cout << std::endl;
-  std::cout << "Unrolled Loop:" << std::endl;
-  unrolledLoop();
-  return 0;
-}
-/*
-In the above example, the original loop iterates 10 times, whereas the unrolled loop performs two iterations at a time, reducing the number of loop control instructions.
-*/
-#include <iostream>
-// Original loop
-void originalLoop() {
-  int sum = 0;
-  for (int i = 0; i < 10; i++) {
-    sum += i;
-  }
-  std::cout << "Sum (original loop): " << sum << std::endl;
-}
-// Unrolled loop
-void unrolledLoop() {
-  int sum = 0;
-  for (int i = 0; i < 10; i += 2) {
-    sum += i + (i + 1);
-  }
-  std::cout << "Sum (unrolled loop): " << sum << std::endl;
-}
-int main() {
-  std::cout << "Original Loop:" << std::endl;
-  originalLoop();
-  std::cout << std::endl;
-  std::cout << "Unrolled Loop:" << std::endl;
-  unrolledLoop();
-  return 0;
-}
-/*
-By unrolling the loop, we reduce the overhead of loop control instructions and improve the efficiency of the summation operation. Keep in mind that the benefits of loop unrolling can vary depending on the specific computation and the compiler's optimization capabilities.
-*/
 
 // Macro substitution
 

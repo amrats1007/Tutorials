@@ -1,10 +1,10 @@
 web server
 
-A web server is a software program that runs on a computer or a network and is responsible for delivering web pages or other content to clients that request it via the World Wide Web (WWW) using the Hypertext Transfer Protocol (HTTP) or other protocols.
+> A web server is a software program that runs on a computer or a network and is responsible for delivering web pages or other content to clients that request it via the World Wide Web (WWW) using the Hypertext Transfer Protocol (HTTP) or other protocols.
 
-When a client, such as a web browser, sends a request to a web server for a webpage or other content, the web server responds by sending the requested data back to the client over the internet. Web servers typically host websites or web applications and can handle multiple requests simultaneously from multiple clients.
+> When a client, such as a web browser, sends a request to a web server for a webpage or other content, the web server responds by sending the requested data back to the client over the internet. Web servers typically host websites or web applications and can handle multiple requests simultaneously from multiple clients.
 
-Common web servers include Apache, Nginx, IIS, and Node.js, and they are an essential component of the internet and the World Wide Web.
+> Common web servers include Apache, Nginx, IIS, and Node.js, and they are an essential component of the internet and the World Wide Web.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 file path
@@ -19,13 +19,25 @@ file path
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 CDN
 
-CDN stands for Content Delivery Network. It is a distributed network of servers that work together to deliver content, such as images, videos, and web pages, to users based on their geographic location. The goal of a CDN is to reduce latency and improve website performance by delivering content from servers that are closer to the user.
+> CDN stands for Content Delivery Network. It is a distributed network of servers that work together to deliver content, such as images, videos, and web pages, to users based on their geographic location. The goal of a CDN is to reduce latency and improve website performance by delivering content from servers that are closer to the user.
 
-When a user requests content from a website, the request is routed to the nearest server in the CDN, which then delivers the content to the user. This reduces the amount of time it takes for the content to load, as the user is accessing content from a server that is physically closer to them.
+> When a user requests content from a website, the request is routed to the nearest server in the CDN, which then delivers the content to the user. This reduces the amount of time it takes for the content to load, as the user is accessing content from a server that is physically closer to them.
 
-CDNs are commonly used by websites that have a global audience, or that deliver large amounts of content such as video streaming services. By using a CDN, these websites can provide a faster and more reliable user experience, while also reducing the load on their own servers.
+> CDNs are commonly used by websites that have a global audience, or that deliver large amounts of content such as video streaming services. By using a CDN, these websites can provide a faster and more reliable user experience, while also reducing the load on their own servers.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
+Programming Fundamentals
 
+> A computer program is like a recipe. So when we write programs, we need to be very, very explicit about what we want the computer to do.
 
+> A program is a set of instructions that a computer executes to solve a problem.
 
+> A set of precise steps for solving a problem is known as an Algorithm.
+
+> Programmers often use something called pseudocode. Pseudocode is like an English-like or your own natural spoken language-like representation of the algorithm or the steps necessary to solve the problem. It's not a programming language. It's just a way to express the algorithm in a way that's understandable by humans.
+
+> Refactoring means changing your code to make it better without changing behavior, that's really important. Refactoring does not change the behavior of your code(logic), it just makes your code better, more modifiable, easier to read, and so forth.
+
+> Integrated development environments (IDE) are programs that allow us to do everything from a common interface. IDEs are programs that provide an editor with a way to compile, link and execute your source code. They also often have debuggers that can help you understand your code and fix errors. IDEs also help us keep our files in sync and provide hooks to version control systems such as git and subversion.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
