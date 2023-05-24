@@ -52,7 +52,7 @@ Build Process
 
 > Source code(translation unit): The code we write using programming editors. C++ programs have an extension like .cpp .h .cc .hpp and there are several others like .c .cxx .c++ .H .hh .hxx .h++
 
-  >> A translation unit refers to the basic unit of source code that is processed by the compiler. it is a single source code file and all the header files it includes directly or indirectly.
+  >> A translation unit refers to the basic source code unit that the compiler processes. it is a single source code file and all the header files it includes directly or indirectly.
 
   >> When you compile a C++ program, each translation unit is compiled separately into an object file, and then these object files are linked together to create an executable file.
 
@@ -80,32 +80,6 @@ Build Process
 > Release: Once we've tested and debugged our program, we release it to the world. This means that we make it available to our users. This is the final step in the build process.
 */
 
-/*
-C++ preprocessor
-
-> In C++, the preprocessor is a component of the C++ compiler that processes the source code before it is compiled into machine code.
-
-> The preprocessor is a built-in component of the C++ compiler and is typically invoked automatically as part of the compilation process. It is not a separate file that you need to include or link with your program. However, you can control the behavior of the preprocessor by using various preprocessor directives in your code.
-
-> When you compile a C++ program, the preprocessor reads the source code and performs a series of text manipulations based on preprocessor directives, which are special commands written in the code that begins with the '#' symbol. The resulting modified code is then passed on to the compiler for further processing and translation into machine code.
-
-> The preprocessor is responsible for performing various tasks:
-
-  >> Macro substitution: The preprocessor replaces all occurrences of a macro in the code with its corresponding value or expression defined by the programmer using the #define directive.
-
-  >> Conditional compilation: The preprocessor evaluates conditional directives such as #if, #else, and #endif to determine which sections of code should be compiled based on a set of predefined conditions.
-
-  >> File inclusion: The preprocessor inserts the contents of other source code files into the current file using the #include directive.
-
-  >> Compiler control: The preprocessor provides other directives, such as #define and #undef, that allows the programmer to define and undefine macros, respectively.
-
-  >> Remove comments: The preprocessor removes comments from the source code before passing it to the compiler.
-
-  >> Line control: The preprocessor generates line control information that aids in error messages and debugging. It inserts #line directives to indicate the original line numbers in the source file.
-
-> The preprocessor is a powerful tool that can be used to automate repetitive tasks, control the flow of program execution, and make code more modular and reusable. However, its misuse can lead to code bloat, poor readability, and difficult debugging.
-*/
-
 /***************************************************************************************************************************/
 
 /*
@@ -113,9 +87,9 @@ Compiler Installation
 
 > see 'Udemy-Dr.Frank.Mitropoulos-Beginning.C++.Programming.-.From.Beginner.to.Beyond - Section 2: Installation and Setup'
 
-> mingw-w64.org => Downloads => MingW-W64-builds (It's a GCC compiler, which is really a collection of compilers.) => x86_64 for 64-bit windows - i686 for 32-bit windows
+> mingw-w64.org => Downloads => MingW-W64-builds (It's a GCC compiler, which is really a collection of compilers.) => x86_64 for 64-bit Windows - i686 for 32-bit Windows
 
-> install in folder mingw-w64 directly - It's very important once you when you name your directories to be sure that you don't use any special characters, no international characters, and no spaces. So make sure that whatever you decide to use for directory names, they're very, very simple because compiler toolchains have real problems with cloud drives, spaces, international characters, and special characters.
+> Install in folder mingw-w64 directly - It's crucial once when you name your directories to be sure that you don't use any special characters, no international characters, and no spaces. So make sure that whatever you decide to use for directory names, they're very, very simple because compiler toolchains have real problems with cloud drives, spaces, international characters, and special characters.
 */
 
 /***************************************************************************************************************************/
