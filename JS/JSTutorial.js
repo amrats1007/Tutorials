@@ -1,145 +1,85 @@
 /*
-JavaScript Releases
-
-> 1995 => brendan eich created javascript in 10 days, and it was first released in netscape navigator 2.0 it was called Mocha
-> 1996 => Mocha changed to LiveScript and then to JavaScript and in this year microsoft released IE, copying the javascript engine from netscape navigator and calling it JScript
-> 1997 => ecma international released the first version of ECMAScript (ES1) the first official standard for js, and it was called ECMAScript 1 (ES1)
-> 2009 => ES5 was released
-> 2015 => ES6/ES2015, the biggest update to the language ever, ECMAScript changes to an annual release cycle in order to ship less breaking changes per update
-> 2016 - ... => release of ES2016 / ES2017 / ES2018 / ..... ESNext
-*/
-
-/*
-Backwards compatibility
-
-There is one particularity about JavaScript releases, which is pretty unique for any programming language and that's backwards compatibility all the way to ES1. So what does that actually mean? Well, basically it means that if you were to take some JavaScript code written back in 1997 and put it in a modern browser with a modern JavaScript engine today, it would still work just the same. So again, the JavaScript engine that's in our browser today is able to understand old code written 25 years ago, without having to rely on version numbers or anything like that. It just works. And it works this way because of the fundamental principle that's baked into the JavaScript language and its development, which is to not break the web. This means that there is almost never anything removed from the language, but only added in new versions. And actually, we cannot really call them new versions even, because they do not contain breaking changes like when other languages moved to a new version, Instead new versions are always just incremental updates, which add new stuff. And so I like to call them releases and not versions
-
-The ECMAScript committee, who works on updating the language, does all this. So that old websites basically keep working forever. Just imagine they removed some important features that made a website from 2008, work just fine. If you then want it to visit that page, it will be broken. And that's why we fortunately have to don't break the web principle. Now, of course, this comes with problems because there are tons of old bugs and weird things in the language Remember that Brendan Eich made the very first version in just 10 days, and no one back then could even imagine what JavaScript would be used for one day. The initial goal of JavaScript was just to add some simple dynamics to pages, not to write whole web applications in a browser like we do today. But anyway, these bugs and weird quirks in the language have been giving the language a bad reputation among many programmers who can really take JavaScript seriously because of this. But here's the thing, we can actually go around many of this weird stuff by simply learning the modern JavaScript that matters today and just ignore most of the old weird stuff
-
-There is one more thing that we need to talk about here, and that is forward compatibility. So what do you think would happen if we took this totally made-up code from the year 2089 and try to run it in today's browsers? Well, you're probably right. It would not work at all. There would be errors left and right. And nothing would work. That's why we say that JavaScript is not forward compatible, basically because current browsers do not understand code from the future
-*/
-
-/*
 Polyfills and transpilers
 
-How can we use modern JavaScript today? Because browsers that users are using might be old and there's no forwards compatibility. Right? So to answer the question, how we can use modern JavaScript today, we need to consider two distinct scenarios, development and production. So the development phase is simply when you're building the site or application on your computer. To ensure, you can use the latest JavaScript features in this phase. All you have to do is to use the most Up ToDate version of the Google Chrome browser. The second scenario is production, which is when your web application is finished. You deploy it on the internet and it's then running in your users' browsers. And this is where problems might appear, because this is the part that we actually can't control. We cannot control which browser the user uses. And we also can't assume that all our users always use the latest browsers, right. Now, the solution to this problem is to basically convert these modern JavaScript versions back to ES5 using a process called Polyfills and transpilers
-
-We will use a tool called Babel to transpile or code, transpiling back to ES5 is only necessary after your app is developed, and you want to ship it to your users. All right. So now let's take a look at how different JavaScript releases can be used today. So first off ES5 is, of course, fully supported in all browsers today, all the way downer to Internet Explorer 9 from 2011. So we can assume that ES5 is safe to be used at this point, which is the reason why we use it as a target for transpiling. Now about the newer releases, ES6, ES7 and all the way to ES2020, as of mid-2020, they are actually quite well-supported already in all modern browsers. And we usually call all the current versions together, ES6+. So right now that's from ES6 to ES2020, and basically all together, they are the modern JavaScript. Now it's in this modern JavaScript. So in this ES6+ where transpiling comes in, as I mentioned earlier. Again, because it's not safe to assume that all our users are using these modern browsers, and we don't want to break our app for them, right?
-
-If you want to stay up to date with what features are currently supported in which browser, you can check out the ES6 compatibility table. It's fascinating.
-
-Next, there are also the future releases of the language like ES2021, ES2022 and so on. And these future releases together are many times called ESNext. Now, why is this even relevant? Well, because most browsers actually start implementing new features even before they enter the official ECMAScript specification. That's possible because, as new features are proposed, they have to go through four stages, starting with stage one, where they are first admitted all the way to stage four, at which point they enter the language officially. But when a feature is at stage three, browsers can be pretty sure it will eventually pass to stage four. And so they're going to start implementing that feature while still in stage three. And there is a lot more to be said about this. You can find tons of information about this online. If you want to learn more. And a great place to start is actually once more, this compatibility table - https://kangax.github.io/compat-table/es6/ and https://caniuse.com/
-*/
-
-/*
-The JavaScript language steadily evolves. New proposals to the language appear regularly, they are analyzed and, if considered worthy, are appended to the draft and then progress to the specification. Teams behind JavaScript engines have their own ideas about what to implement first. They may decide to implement proposals that are in draft and postpone things that are already in the spec, because they are less interesting or just harder to do. So it’s quite common for an engine to implement only part of the standard. As programmers, we’d like to use most recent features. The more good stuff – the better! On the other hand, how to make our modern code work on older engines that don’t understand recent features yet? There are two tools for that: Transpilers, Polyfills.
+The JavaScript language steadily evolves. New proposals to the language appear regularly, they are analyzed and, if considered worthy, are appended to the draft and then progress to the specification. Teams behind JavaScript engines in browsers have their own ideas about what to implement first. They may decide to implement proposals that are in draft and postpone things that are already in the spec because they are less interesting or just harder to do. So it’s quite common for an engine to implement only part of the standard. As programmers, we’d like to use the most recent features. The more good stuff – the better! On the other hand, how to make our modern code work on older engines that don’t understand recent features yet? There are two tools for that: Transpilers and Polyfills.
 
 Transpilers
-A transpiler is a special piece of software that translates source code to another source code. It can parse (“read and understand”) modern code and rewrite it using older syntax constructs, so that it’ll also work in outdated engines. E.g. JavaScript before year 2020 didn’t have the “nullish coalescing operator” ??. So, if a visitor uses an outdated browser, it may fail to understand the code like height = height ?? 100. A transpiler would analyze our code and rewrite height ?? 100 into (height !== undefined && height !== null) ? height : 100.
-	// before running the transpiler
+A transpiler is a special piece of software that translates source code to another source code. It can parse (“read and understand”) modern code and rewrite it using older syntax constructs so that it’ll also work in outdated engines. For E.g. JavaScript before the year 2020 didn’t have the “nullish coalescing operator” ??. So, if a visitor uses an outdated browser, it may fail to understand the code like height = height ?? 100. A transpiler would analyze our code and rewrite [height ?? 100] into [(height !== undefined && height !== null) ? height : 100].
+	//Before running the transpiler
 	height = height ?? 100;
-	// after running the transpiler
+	//After running the transpiler
 	height = (height !== undefined && height !== null) ? height : 100;
-Now the rewritten code is suitable for older JavaScript engines. Usually, a developer runs the transpiler on their own computer, and then deploys the transpiled code to the server. Speaking of names, Babel is one of the most prominent transpilers out there. Modern project build systems, such as webpack, provide a means to run a transpiler automatically on every code change, so it’s very easy to integrate into the development process. you can setup a code build system based on webpack with the babel-loader plugin. https://github.com/babel/babel-loader
+Now the rewritten code is suitable for older JavaScript engines. Usually, a developer runs the transpiler on their own computer and then deploys the transpile code to the server. Speaking of names, Babel is one of the most prominent transpilers out there. Modern project build systems, such as Webpack, provide a means to run a transpiler automatically on every code change, so it’s very easy to integrate into the development process. you can set up a code build system based on Webpack with the babel-loader plugin. https://github.com/babel/babel-loader
 
 Polyfills
-New language features may include not only syntax constructs and operators, but also built-in functions. For example, Math.trunc(n) is a function that “cuts off” the decimal part of a number, e.g Math.trunc(1.23) returns 1. In some (very outdated) JavaScript engines, there’s no Math.trunc, so such code will fail. As we’re talking about new functions, not syntax changes, there’s no need to transpile anything here. We just need to declare the missing function. A script that updates/adds new functions is called “polyfill”. It “fills in” the gap and adds missing implementations. For this particular case, the polyfill for Math.trunc is a script that implements it, like this:
+New language features may include not only syntax constructs and operators, but also built-in functions. For example, Math.trunc(n) is a function that “cuts off” the decimal part of a number, e.g. Math.trunc(1.23) returns 1. In some (very outdated) JavaScript engines, there’s no Math.trunc, so such code will fail. As we’re talking about new functions, not syntax changes, there’s no need to transpile anything here. We just need to declare the missing function. A script that updates/adds new functions is called “polyfill”. It “fills in” the gap and adds missing implementations. For this particular case, the polyfill for Math.trunc is a script that implements it, like this:
 	if (!Math.trunc) { // if no such function
-		// implement it
+		//Implement it
 		Math.trunc = function(number) {
-			// Math.ceil and Math.floor exist even in ancient JavaScript engines
-			// they are covered later in the tutorial
+			// Math.ceil and Math.floor exist even in ancient JavaScript engines, so we can use them
 			return number < 0 ? Math.ceil(number) : Math.floor(number);
 		};
 	}
-JavaScript is a highly dynamic language. Scripts may add/modify any function, even built-in ones. Two interesting polyfill libraries are: [core js] that supports a lot, allows to include only needed features. [polyfill.io] service that provides a script with polyfills, depending on the features and user’s browser.
+JavaScript is a highly dynamic language. Scripts may add/modify any function, even built-in ones. Two interesting polyfill libraries are [core js] which supports a lot and allows to the inclusion of only needed features. [polyfill.io] service that provides a script with polyfills, depending on the features and the user’s browser.
 */
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /*
-The programs in js are called scripts. They can be written right in a web page’s HTML and run automatically as the page loads. Scripts are provided and executed as plain text. They don’t need special preparation or compilation to run like java. Javascript was named like this to gain java developer confidence in it. But as it evolved, JavaScript became a fully independent language with its own specification called ECMAScript, and now it has no relation to Java at all.
+Script
 
-Today, JavaScript can execute not only in the browser, but also on the server, or actually on any device that has a special program called the JavaScript engine. The browser has an embedded engine sometimes called a “JavaScript virtual machine”. Different engines have different “code names”. For example,
-	> V8 – in Chrome, Opera and Edge.
-	> SpiderMonkey – in Firefox.
-	> …There are other code names like “Chakra” for IE, “JavaScriptCore”, “Nitro” and “SquirrelFish” for Safari, etc.
-How do engines work? Engines are complicated. But the basics are easy.
-	> The engine (embedded if it’s a browser) parses (reads) the script.
-	> Then it converts (“compiles”) the script to machine code.
-	> And then the machine code runs, pretty fast.
-	> The engine applies optimizations at each step of the process. It even watches the compiled script as it runs, analyzes the data that flows through it, and further optimizes the machine code based on that knowledge.
+The programs in js are called scripts. They can be written right in a web page’s HTML and run automatically as the page loads. Scripts are provided and executed as plain text. They don’t need special preparation or compilation to run like Java. Javascript was named like this to gain Java developer confidence in it. But as it evolved, JavaScript became a fully independent language with its own specification called ECMAScript, and now it has no relation to Java at all.
 
-in the real world we usually use the term ECMAScript to refer to the standard, while JavaScript is used when we talk about the language in practice, as it's implemented in browsers.
+in the real world, we usually use the term ECMAScript to refer to the standard, while JavaScript is used when we talk about the language in practice, as it's implemented in browsers.
 
-What can in-browser JavaScript do?
-Modern JavaScript is a “safe” programming language. It does not provide low-level access to memory or the CPU, because it was initially created for browsers which do not require it. JavaScript’s capabilities greatly depend on the environment it's running in. For instance, Node.js supports functions that allow JavaScript to read/write arbitrary files, perform network requests, etc.
-In-browser JavaScript can do everything related to webpage manipulation, interaction with the user, and the webserver. For instance, in-browser JavaScript is able to:
-	> Add new HTML to the page, change the existing content, modify styles.
-	> React to user actions, run on mouse clicks, pointer movements, key presses.
-	> Send requests over the network to remote servers, download and upload files (so-called AJAX and COMET technologies).
-	> Get and set cookies, ask questions to the visitor, show messages.
-	> Remember the data on the client-side (“local storage”).
-
-What CAN’T in-browser JavaScript do?
-JavaScript’s abilities in the browser are limited to protect the user’s safety. The aim is to prevent an evil webpage from accessing private information or harming the user’s data. Examples of such restrictions include:
-	> JavaScript on a webpage may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to OS functions.
-		- Modern browsers allow it to work with files, but the access is limited and only provided if the user does certain actions, like “dropping” a file into a browser window or selecting it via an <input> tag.
-		- There are ways to interact with the camera/microphone and other devices, but they require a user’s explicit permission. So a JavaScript-enabled page may not sneakily enable a web-camera, observe the surroundings and send the information to the NSA.
-	> Different tabs/windows generally do not know about each other. Sometimes they do, for example, when one window uses JavaScript to open the other one. But even in this case, JavaScript from one-page may not access the other page if they come from different sites (from a different domain, protocol or port).
-		- This is called the “Same Origin Policy”. To work around that, both pages must agree for data exchange and must contain special JavaScript code that handles it
-		- This limitation is, again, for the use ’s safety. A page from http://anysite.com which a user has opened must not be able to access another browser tab with the URL http://gmail.com, for example, and steal information from there.
-	> JavaScript can easily communicate over the net to the server where the current page came from. But its ability to receive data from other sites/domains is crippled. Though possible, it requires explicit agreement (expressed in HTTP headers) from the remote side. Once again, that’s a safety limitation.
-		- Such limitations do not exist if JavaScript is used outside the browser, for example on a server. Modern browsers also allow plugins/extensions which may ask for extended permissions.
-
-Languages “over” JavaScript
-The syntax of JavaScript does not suit everyone’s needs. Different people want different features. That’s to be expected, because projects and requirements are different for everyone. So, recently a plethora of new languages appeared, which are transpiled (converted) to JavaScript before they run in the browser. Modern tools make the transpile very fast and transparent, actually allowing developers to code in another language and auto-converting it “under the hood”. Examples of such languages:
-	> CoffeeScript is “syntactic sugar” for JavaScript. It introduces shorter syntax, allowing us to write clearer and more precise code. Usually, Ruby developers like it.
-	> TypeScript is concentrated on adding “strict data typing” to simplify the development and support of complex systems. It is developed by Microsoft.
-	> Flow also adds data typing, but in a different way. Developed by Facebook.
-	> Dart is a standalone language that has its own engine that runs in non-browser environments (like mobile apps), but also can be transpiled to JavaScript. Developed by Google.
-	> Brython is a Python transpiler to JavaScript that enables the writing of applications in pure Python without JavaScript.
-	> Kotlin is a modern, concise and safe programming language that can target the browser or Node.
-There are more. Of course, even if we use one of these transpiled languages
-*/
-
-/*--------------------------------------------------------------------------------------------------------------------------------------------*/
-
-/*
-> javascript is a scripting language, browser is the interpreter of javascript, it supports OOP, Basically it works on the client side (browser) but more recently it works on the server side too by nodeJs
+> javascript is a scripting language, the browser is the interpreter of javascript, and it supports OOP. Basically, it works on the client side (browser) but more recently it works on the server side too by nodeJs.
 
 > JavaScript is “dynamic”, meaning that there exist data types, but variables are not bound to any of them. we can assign a new value with a different data type to the same variable without a problem.
 
-> javascript is a loosely typed language, it can store any data type in a variable without define the type of it unlike strongly typed languages
+> JavaScript is a loosely typed language, it can store any data type in a variable without define the type of it unlike strongly typed languages like java, c#, c++.
 
-> it's a high level object-oriented, multi-paradigm programming language.
-	- JavaScript is a high-level language, which means that we don't have to think about a lot of complex stuff such as managing the computer's memory while it runs or program. So in JavaScript, there are a lot of so-called abstractions over all these small details that we don't want to worry about.
-	- JavaScript is also a multi-paradigm language, meaning that it's so flexible and versatile, that we can use all kinds of different programming styles, such as imperative and declarative programming. And these different styles are just different ways of structuring our code
-	- JavaScript is object-oriented. And all that means is that the language is mostly based on the concept of objects for storing most kinds of data.
+> JavaScript is a high-level object-oriented, multi-paradigm programming language.
+	>> JavaScript is a high-level language, which means that we don't have to think about a lot of complex stuff such as managing the computer's memory while it runs or in programming. So in JavaScript, there are a lot of so-called abstractions over all these small details that we don't want to worry about.
+	>> JavaScript is also a multi-paradigm language, meaning that it's so flexible and versatile, that we can use all kinds of different programming styles, such as imperative and declarative programming. And these different styles are just different ways of structuring our code
+	>> JavaScript is object-oriented. And all that means is that the language is mostly based on the concept of objects for storing most kinds of data.
 
-> HTML(content) >> noun | CSS(presentation) >> adjective | JavaScript(dynamic&interactivity affects of wep application) >> verb
+> HTML(content) >> noun | CSS(presentation) >> adjective | JavaScript(dynamic&interactivity) >> verb
 
-> you can use console (developer tools) [ctrl + shift + i or f12] as an editor because it has the full manual of javascript, console is a WepAPI, developer uses console to log errors and messages that help him in coding and experiment his code in it. So any code that we write here and then hit return will immediately get evaluated. it has levels of issues [verbose - info - warning - error]. Developer tools allow us to see errors, run commands, examine variables, and much more. the console is just an environment that was built to execute small pieces of code and then show results immediately. But it doesn't show results of our operations in code by default.
-
-> window, document and console are global variables in javascript, and they are available in all javascript files and all functions, and they considered as objects having properties and methods
+> Window, Document, and Console are global variables in javascript, and they are available in all javascript files and all functions, and they considered as objects having properties and methods.
 */
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /*
-Place of javascript code: inline (html tag) - internal (html file [head/body]) - external (js file)
+Developer Tools
+
+> We can use the console (developer tools) as an editor because it has the full manual of javascript, console is a WepAPI, developer uses the console to log errors and messages that help him in coding and experimenting with his code in it. So any code that we write here and then hit return will immediately get evaluated.
+
+> it has levels of issues [verbose - info - warning - error].
+
+> Developer tools allow us to see errors, run commands, examine variables, and much more. the console is just an environment that was built to execute small pieces of code and then show results immediately. But it doesn't show the results of our operations in code by default.
+
+> ctrl+shift+i or f12 to open developer tools in Chrome.
+*/
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*
+Place of javascript code
+
+> inline (html tag) - internal (html file [head/body]) - external (js file)
 
 > JavaScript programs can be inserted almost anywhere into an HTML document using the <script> tag.
 
 > The <script> tag contains JavaScript code which is automatically executed when the browser processes the tag.
 
-> in <head> you must put it in the last position, in this case the javascript file will be executed first before the creation (loading) of the page (body), we can use event like [window.onload] to make javascript run after html tags creation (after the page is loaded)
+> Place of javascript code in html is very important and it affects the web page performance and the user experience of the web page, so we must put it in the right place.
 
-> in <body> its preferred and the best practice to put it in the end, before closing tag </body>, because if there is an error in javascript code it will prevent or block the html code located after it
+> in <head> you must put it in the last position, in this case, the javascript file will be executed first before the creation (loading) of the page (body), we can use events like [window.onload] to make javascript run after HTML tags creation (after the page is loaded).
 
-> place of javascript code in html is very important and its affects on the web page performance and the user experience of the web page
+> in <body> it's preferred and the best practice is to put it in the end, before closing tag </body>, because if there is an error in javascript code it will prevent or block the HTML code located after it.
 
-> making external javascript file is better for caching and performance of the web page and the user experience. However, there are some of the javascript code that must be written in html page, As a rule; only the simplest scripts are put into HTML. More complex ones reside in separate files. The benefit of a separate file is that the browser will download it and store it in its cache. Other pages that reference the same script will take it from the cache instead of downloading it, so the file is actually downloaded only once. That reduces traffic and makes pages faster.
+> Making an external javascript file is better for caching and performance of the web page and the user experience. However, there are some of the javascript code that must be written in html page, As a rule; only the simplest scripts are put into HTML. More complex ones reside in separate files. The benefit of a separate file is that the browser will download it and store it in its cache. Other pages that reference the same script will take it from the cache instead of downloading it, so the file is actually downloaded only once. That reduces traffic and makes pages faster.
 
 > If src is set, the script content is ignored. A single <script> tag can’t have both the src attribute and code inside. This won’t work:
 	<script src="file.js">
@@ -164,25 +104,27 @@ modern mode (strict mode)
 		'use strict';
 		your code here
 	}
-You can also enable strict mode in ES6 by adding "strict": true in the config file of project or by adding "strict": "global" in the tsconfig.json file if you're using TypeScript. It's considered best practice to use strict mode in production environment, it can help you spot an errors early and prevent unwanted behavior.
+You can also enable strict mode in ES6 by adding "strict": true in the config file of the project or by adding "strict": "global" in the tsconfig.json file if you're using TypeScript. It's considered best practice to use strict mode in production environment, it can help you spot an errors early and prevent unwanted behavior.
 
 > There is no directive like "no use strict" that reverts the engine to old behavior. Once we enter strict mode, there’s no going back.
 
-> When you use a developer console to run code, please note that it doesn’t use strict by default. Sometimes, when use strict makes a difference, you’ll get incorrect results. So, how to actually use strict in the console? First, you can try to press Shift+Enter to input multiple lines, and put use strict on top, like this:
+> When you use a developer console to run code, please note that it doesn’t use strict by default. Sometimes, when using strict makes a difference, you’ll get incorrect results. So, how to actually use strict mode in the console? First, you can try to press Shift+Enter to input multiple lines, and put use strict on top, like this:
 	'use strict'; <Shift+Enter for a newline>
 	...your code...
 	<Enter to run>
-It works in most browsers, namely Firefox and Chrome. If it doesn’t, e.g. in an old browser, there’s an ugly, but reliable way to ensure use strict. Put it inside this kind of wrapper:
+It works in most browsers, namely Firefox and Chrome. If it doesn’t, e.g. in an old browser, there’s an ugly, but reliable way to ensure use strict. Put it inside this kind of wrapper(IIFE):
 	(function() {
 		'use strict';
 		...your code here...
 	})()
 
-> Modern JavaScript supports “classes” and “modules”, that enable use strict automatically. So we don’t need to add the "use strict" directive, if we use them. So, for now "use strict"; is a welcome guest at the top of your scripts. Later, when your code is all in classes and modules, you may omit it.
+> Modern JavaScript supports “classes” and “modules”, that enable the use of strict mode automatically. So we don’t need to add the "use strict" directive if we use them. So, for now, "use strict"; is a welcome guest at the top of your scripts. Later, when your code is all in classes and modules, you may omit it.
 
-> strict mode makes our code is secure, I mean that strict mode makes it easier for us developers to avoid accidental errors. So basically it helps us introduce the bugs into our code and that's because of 2 reasons. First, strict mode forbids us to do certain things and second, it will actually create visible errors for us in certain situations in which without strict mode JavaScript will simply fail silently without letting us know that we made a mistake. So again, first strict mode forbids us to do certain things and second it creates visible errors in the developer console, where in other situations JavaScript would just fail silently.
+> Strict mode makes our code secure, I mean that strict mode makes it easier for us developers to avoid accidental errors. So basically it helps us introduce the bugs into our code and that's because of 2 reasons. First, strict mode forbids us to do certain things and second, it will actually create visible errors for us in certain situations in which without strict mode JavaScript will simply fail silently without letting us know that we made a mistake. So again, first strict mode forbids us to do certain things and second, it creates visible errors in the developer console, whereas in other situations JavaScript would just fail silently.
 
-> Now another thing that strict mode does is to introduce a short list of variable names that are reserved for features that might be added to the language a bit later.
+> Now another thing that strict mode does is to introduce a short list of variable names that are reserved for features that might be added to the language a bit later like interface or private. So we can't use them as variable names in our code.
+
+> So strict mode is a way to voluntarily enforce stricter parsing and error handling on our JavaScript code at runtime. So it's a way to tell the browser to please be more strict with our code and to please throw errors for certain things that without strict mode JavaScript would simply fail silently.
 */
 
 'use strict';
@@ -201,17 +143,17 @@ if (hasDriversLicense) console.log('I can drive :D');
 /*
 syntax
 
-> must write code from the beginning of line without indentation
+> It is preferred to write code from the beginning of the line without indentation
 
-> javascript code is very sensitive for spaces, because space is considered as character
+> javascript code is very sensitive for spaces because space is considered a character
 
 > letters in javascript are sensitive [amr != Amr]
 
 > javascript loves camelCase notation for naming identifies [theFirstName]
 
-> " ' anything inside them considered as not programming keyword
+> " 'Anything inside them considered as not programming keyword
 
-> semicolon is the end of statement; it is optional, A semicolon may be omitted in most cases when a line break exists. in this case JavaScript interprets the line break as an “implicit” semicolon. This is called an automatic semicolon insertion [https://tc39.es/ecma262/#sec-automatic-semicolon-insertion]. In most cases, a newline implies a semicolon. But “in most cases” does not mean “always”!.
+> semicolon is the end of the statement; it is optional, A semicolon may be omitted in most cases when a line break exists. in this case, JavaScript interprets the line break as an “implicit” semicolon. This is called an automatic semicolon insertion [ASI] [https://tc39.es/ecma262/#sec-automatic-semicolon-insertion]. In most cases, a newline implies a semicolon. But “in most cases” does not mean “always”!.
 	alert(3 +
 	1
 	+ 2);
@@ -220,7 +162,7 @@ But there are situations where JavaScript “fails” to assume a semicolon wher
 	[1, 2].forEach(alert);
 If we run this code, only the first Hello shows (and there’s an error, you may need to open the console to see it). There are no numbers anymore. That’s because JavaScript does not assume a semicolon before square brackets [...]. So, the code in the last example is treated as a single statement. Here’s how the engine sees it:
 	alert("Hello")[1, 2].forEach(alert);
-Semicolons are not required after code blocks {...} and syntax constructs with them like loops
+Semicolons are not required after code blocks {...} and syntax constructs with them like loops.
 */
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -228,13 +170,13 @@ Semicolons are not required after code blocks {...} and syntax constructs with t
 /*
 Comments
 
-> explain the code and prevent code execution
+> Explain the code and prevent code execution
 
 > In most editors, a line of code can be commented out by pressing the Ctrl+/ hotkey for a single-line comment and something like Ctrl+Shift+/ for multiline comments
 
-> Comments increase the overall code footprint, but that’s not a problem at all. There are many tools which minify code before publishing to a production server. They remove comments, so they don’t appear in the working scripts. Therefore, comments do not have negative effects on production at all.
+> Comments increase the overall code footprint, but that’s not a problem at all. There are many tools that minify code before publishing it to a production server. They remove comments, so they don’t appear in the working scripts. Therefore, comments do not have negative effects on production at all.
 
-> Nested multiple lines comments are not supported! (error)
+> Nested multiple lines comments are not supported! => produces an error
 */
 
 // single line comment
@@ -247,10 +189,6 @@ comment
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------*/
 
-// refactoring technique: basically means to restructure the code but without changing how it works. So basically we do refactoring to improve the code and to eliminate duplicate code
-
-/*--------------------------------------------------------------------------------------------------------------------------------------------*/
-
 /*
 output
 
@@ -260,11 +198,9 @@ output
 */
 
 // window.alert
-window.alert("hello"); // not recommended to use it in the production environment because it is not secure, not user-friendly, and it is not stable, use it only in the development environment
+window.alert("hello"); // not recommended to use it in the production environment because it is not secure, not user-friendly, and it is not stable, use it only in the development environment.
 function alerting() {
-	"use strict";
-	let xx = 10,
-		yy = 20;
+	let xx = 10, yy = 20;
 	alert(xx + yy + " day");
 }
 alerting();
@@ -349,7 +285,7 @@ statements(declarations) and expressions
 
 > JavaScript expects statements and expressions in different places.
 
-> statements(declarations) is actions, expressions is values
+> statements(declarations) is actions, expressions is values.
 */
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -386,11 +322,11 @@ Operator Precedence - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Re
 */
 
 // example 1
-let x77, y77;
-x77 = y77 = 25 - 10 - 5; // x77 = y77 = 10, x77 = 10
-console.log(x77, y77); // 10 10
-x77 = y77 = 25 - (10 - 5); // x77 = y77 = 25 - 5, x77 = 20
-console.log(x77, y77); // 20 20
+let W, T;
+W = T = 25 - 10 - 5; // W = T = 10, W = T = 10
+console.log(W, T); // 10 10
+W = T = 25 - (10 - 5); // W = T = 25 - 5, W = T = 20
+console.log(W, T); // 20 20
 
 // example 2
 const now = 2037;
@@ -405,11 +341,11 @@ console.log(ageJonas, ageSarah, averageAge2); // 46 19 32.5
 /*--------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /*
-Data Types:  basically specify what kind of data can be stored and manipulated within a program, in JavaScript it's the value that has a type, not the variable.
+Data Types: basically specify what kind of data can be stored and manipulated within a program, in JavaScript it's the value that has a type, not the variable.
 
 > There are 10 basic data types in JavaScript which can be divided into three main categories: primitive (or primary), composite (or reference), and special data types
-	- String, Number, Boolean, symbol and bigint are primitive data types. Object, Array, and Function (which are all types of objects) are composite data types. Whereas Undefined and Null are special data types.
-	- Primitive data types can hold only one value at a time, whereas composite data types can hold collections of values and more complex entities
+	>> String, Number, Boolean, symbol, and bigint are primitive data types. Object, Array, and Function (which are all types of objects) are composite data types. Whereas Undefined and Null are special data types.
+	>> Primitive data types can hold only one value at a time, whereas composite data types can hold collections of values and more complex entities
 
 > String: used to represent textual data (i.e. sequences of characters). Strings are created using single or double quotes surrounding one or more characters - "text" / 'text', You can include quotes inside the string as long as they don't match the enclosing quotes
 var a = 'Hi there!';  // using single quotes
@@ -417,20 +353,20 @@ var b = "Hi there!";  // using double quotes
 var a = "Let's have a cup of coffee."; // single quote inside double quotes
 var b = 'He said "Hello" and left.';  // double quotes inside single quotes
 var c = 'We\'ll never give up.';     // escaping single quote with backslash
-In some languages, there is a special “character” type for a single character. For example, in the C language and in Java it is called “char”. In JavaScript, there is no such type. There’s only one type: string. A string may consist of zero characters (be empty), one character or many of them.
+In some languages, there is a special “character” type for a single character. For example, in the C language and in Java it is called “char”. In JavaScript, there is no such type. There’s only one type: string. A string may consist of zero characters (be empty), one character, or many of them.
 
-> Number: The number data type is used to represent positive or negative numbers with or without decimal place, or numbers written using exponential notation e.g. 1.5e-4 (equivalent to 1.5x10-4). - 5, 3.6 - (5 is not "5" or '5') "5"/'5' are strings
+> Number: The number data type is used to represent positive or negative numbers with or without decimal places, or numbers written using exponential notation e.g. 1.5e-4 (equivalent to 1.5x10-4). 5 is not "5" or '5' | "5"/'5' are strings
 var a = 25;         // integer
 var b = 80.5;       // floating-point number
 var c = 4.25e+6;    // exponential notation, same as 4.25e6
 var d = 4.25e-6;    // exponential notation, same as 0.00000425
-The Number data type also includes some special values which are: Infinity, -Infinity and NaN
-	- Infinity/-Infinity represents the mathematical Infinity ∞, which is greater than any number. Infinity is the result of dividing a nonzero number by 0. https://en.wikipedia.org/wiki/Infinity
+The Number data type also includes some special values which are: Infinity, -Infinity, and NaN
+	>> Infinity/-Infinity represents the mathematical Infinity ∞, which is greater than any number. Infinity is the result of dividing a nonzero number by 0. https://en.wikipedia.org/wiki/Infinity
 		alert(16 / 0);     // Output: Infinity
 		alert('16' / 0);   // Output: Infinity
 		alert(-16 / 0);    // Output: -Infinity
 		alert(16 / -0);    // Output: -Infinity
-	- NaN represents a special Not-a-Number value. It is a result of an invalid or an undefined mathematical operation, like taking the square root of -1 or dividing 0 by 0, etc. and it is not equal to any other value (NaN != NaN) - NaN actually means an invalid number. It's still a number somehow, but it's an invalid one.
+	>> NaN represents a special Not-a-Number value. It is a result of an invalid or an undefined mathematical operation, like taking the square root of -1 or dividing 0 by 0, etc. and it is not equal to any other value (NaN != NaN) - NaN actually means an invalid number. It's still a number somehow, but it's an invalid one.
 		alert("Some text" / 2);        // Output: NaN
 		alert("Some text" / 2 + 10);   // Output: NaN
 		alert(Math.sqrt(-1));          // Output: NaN
@@ -441,35 +377,38 @@ The Number data type also includes some special values which are: Infinity, -Inf
 		alert( "not a number" / 2 - 1 ); // NaN
 		So, if there’s a NaN somewhere in a mathematical expression, it propagates to the whole result (there’s only one exception to that: NaN ** 0 is 1).
 
-> Boolean(logical type): true, false (10 > 8 => true - 5 < 3 => false)
+> Boolean(logical type): true, false (10 > 8 => true | 5 < 3 => false)
 var isReading = true;   // yes, I'm reading
 var isSleeping = false; // no, I'm not sleeping
 var a = 2, b = 5, c = 10;
 alert(b > a) // Output: true
 alert(b > c) // Output: false
 
-> Symbol: new data type in javascript - it is used to create unique identifiers for objects and functions
+> Symbol: new data type in javascript, it is used to create unique identifiers for objects and functions. A value having the data type Symbol can be referred to as a symbol value. The symbol is an immutable primitive value that is unique. In some programming languages, Symbols are called atoms. Symbols may be used as identifiers for object properties; this is the data type's only purpose. Each time the Symbol() function is called, a new unique symbol is returned. Some further points to note about symbols are: 
+	>> Symbols are always unique. For example, Symbol("foo") !== Symbol("foo"). Note though that Symbol.for("foo") == Symbol.for("foo"). Read more about symbol.for here - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for
+	>> Symbols are values created with the Symbol constructor. To create a symbol, you write Symbol() with an optional string as its description. For example, Symbol('foo') creates a symbol with the description "foo".
+	>> The description is just a string and doesn’t affect the value of the symbol at all. The only purpose of the description is to help you remember what the symbol is for. For example, you might use the symbol "foo" to represent a particular command in your code. The description "foo" helps you remember that that’s what the symbol is for. But the description doesn’t affect the value of the symbol. For example, Symbol('foo') is not equal to Symbol('foo'). Each symbol is unique. The description is just a way to help you remember what the symbol is for.
+	>> Symbols are often used as unique property keys on objects. Using symbols as keys makes it less likely that your code will accidentally access or change a property that was intended to be left alone. For example, if you add a new method to an object, you might use a symbol as the key, to make sure that the method doesn’t conflict with a method that might be added by someone else.
 
-> bigint: big integer - it is used to store big integer in javascript (ex: 1.7976931348623157e+308) - it is not supported in all browsers yet. In JavaScript, the “number” type cannot safely represent integer values larger than (2**53-1) (that’s 9007199254740991), or less than -(2**53-1) for negatives. To be really precise, the “number” type can store larger integers (up to 1.7976931348623157 * (10**308)), but outside the safe integer range ±(2**53-1) there’ll be a precision error, because not all digits fit into the fixed 64-bit storage. So an “approximate” value may be stored.
+> bigint: big integer - it is used to store big integer in javascript (ex: 1.7976931348623157e+308) - it is not supported in all browsers yet. In JavaScript, the “number” type cannot safely represent integer values larger than (2**53 -1) (that’s 9007199254740991), or less than -(2**53 -1) for negatives. To be really precise, the “number” type can store larger integers (up to 1.7976931348623157 * (10**308)), but outside the safe integer range ±(2**53-1) there’ll be a precision error because not all digits fit into the fixed 64-bit storage. So an “approximate” value may be stored.
 For example, these two numbers (right above the safe range) are the same:
 	console.log(9007199254740991 + 1); // 9007199254740992
 	console.log(9007199254740991 + 2); // 9007199254740992
-So to say, all odd integers greater than (2**53-1) can’t be stored at all in the “number” type. For most purposes ±(2**53-1) range is quite enough, but sometimes we need the entire range of really big integers, e.g. for cryptography or microsecond-precision timestamps. BigInt type was recently added to the language to represent integers of arbitrary length. A BigInt value is created by appending n to the end of an integer:
+So to say, all odd integers greater than (2**53 -1) can’t be stored at all in the “number” type. For most purposes, ±(2**53 -1) range is quite enough, but sometimes we need the entire range of really big integers, e.g. for cryptography or microsecond-precision timestamps. BigInt type was recently added to the language to represent integers of arbitrary length. A BigInt value is created by appending n to the end of an integer:
 	const bigInt = 1234567890123456789012345678901234567890n; // the "n" at the end means it's a BigInt
-* MDN BigInt compatibility table: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility
+	>> MDN BigInt compatibility table: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility
 
-> Array: ["facebook", "google", "twitter"] - zero based index
-An array is a type of object used for storing multiple values in single variable. Each value (also called an element) in an array has a numeric position, known as its index, and it may contain data of any data type like numbers, strings, booleans, functions, objects, and even other arrays. The array index starts from 0
+> Array: ["Facebook", "google", "Twitter"] - zero-based index
+An array is a type of object used for storing multiple values in a single variable. Each value (also called an element) in an array has a numeric position, known as its index, and it may contain data of any data type like numbers, strings, booleans, functions, objects, and even other arrays. The array index starts from 0.
 
-> Object: a complex data type that allows you to store collections of data. {firstNAme: "Amr", lastName: "Abdelghani"} - key value pairs
-An object contains properties, defined as a key-value pair. A property key (name) is always a string, but the property value can be any data type, like strings, numbers, booleans, or complex data types like arrays, function and other objects. You can omit the quotes around property name if the name is a valid JavaScript name. That means quotes are required around "first-name" but are optional around firstname
+> Object: a complex data type that allows you to store collections of data. {firstNAme: "Amr", lastName: "Abdelghani"} - key-value pairs
+An object contains properties, defined as a key-value pair. A property key (name) is always a string, but the property value can be any data type, like strings, numbers, booleans, or complex data types like arrays, functions, and other objects. You can omit the quotes around the property name if the name is a valid JavaScript name. That means quotes are required around "first-name" but are optional around firstName. The value of a property can be updated or added anytime after an object creation. To access a property value, you can use dot notation or bracket notation. The dot notation is preferred because it is shorter and easier to read. However, the bracket notation is useful when you want to access a property that contains special characters, or when you want to access a property dynamically using a variable.
 
-> Function: The function is callable object that executes a block of code. Since functions are objects, so it is possible to assign them to variables. In fact, functions can be used at any place any other value can be used. Functions can be stored in variables, objects, and arrays. Functions can be passed as arguments to other functions, and functions can be returned from functions.
+> Function: A function is a callable object that executes a block of code. Since functions are objects, it is possible to assign them to variables. In fact, functions can be used at any place any other value can be used. Functions can be stored in variables, objects, and arrays. Functions can be passed as arguments to other functions, and functions can be returned from functions. Functions can also be invoked immediately, known as IIFE (Immediately Invoked Function Expression). It is a common pattern used in JavaScript to create a function and execute it immediately. This pattern helps create a local scope for variables and avoids polluting the global scope.
 
-> null value: it is a reference to nothing, unknown value, In JavaScript, null is not a “reference to a non-existing object” or a “null pointer” like in some other languages. a standalone type that has a single value null.
+> null value: it is a reference to nothing, an unknown value, In JavaScript, null is not a “reference to a non-existing object” or a “null pointer” like in some other languages. It is used to indicate that a variable points to no object. In other words, it is a value that has no value.
 
-> Undefined value: variable is not defined yet, or it is not assigned with any value yet, unassigned value. a standalone type that has a single value undefined.
-The meaning of undefined is “value is not assigned”. If a variable is declared, but not assigned, then its value is undefined:
+> Undefined value: variable is not defined yet, or it is not assigned with any value yet, unassigned value. The meaning of undefined is “value is not assigned”. If a variable is declared, but not assigned, then its value is undefined:
 	let age;
 	alert(age); // shows "undefined"
 Technically, it is possible to explicitly assign undefined to a variable:
@@ -479,19 +418,19 @@ Technically, it is possible to explicitly assign undefined to a variable:
 	alert(age); // "undefined"
 …But we don’t recommend doing that. Normally, one uses null to assign an “empty” or “unknown” value to a variable, while undefined is reserved as a default initial value for unassigned things.
 
-> you can know a data type by a builtin operator in javascript (typeof) - Returns a string with the name of the type. To put it clear: typeof is an operator, not a function. The parentheses here aren’t a part of typeof. It’s the kind of parentheses used for mathematical grouping. Usually, such parentheses contain a mathematical expression, such as (2 + 2), but here they contain only one argument (x). Syntactically, they allow avoiding a space between the typeof operator and its argument, and some people like it.
-- string: string
-- number: number
-- Infinity: number
-- NaN: number
-- boolean: boolean
-- Symbol: symbol
-- bigint: bigint
-- array: object
-- object: object
-- Function: function
-- null: object
-- undefined: undefined
+> You can know a data type by a built-in operator in javascript (typeof), which Returns a string with the name of the type. To put it clearly: typeof is an operator, not a function. The parentheses here aren’t a part of typeof. It’s the kind of parentheses used for mathematical grouping. Usually, such parentheses contain a mathematical expression, such as (2 + 2), but here they contain only one argument (x). Syntactically, they allow avoiding a space between the typeof operator and its argument, and some people like it.
+	>> string: string
+	>> number: number
+	>> Infinity: number
+	>> NaN: number
+	>> boolean: boolean
+	>> Symbol: symbol
+	>> bigint: bigint
+	>> array: object
+	>> object: object
+	>> Function: function
+	>> null: object*
+	>> undefined: undefined
 */
 
 // undefined
@@ -505,65 +444,60 @@ let de = "amr",
 console.log(we); // NaN
 
 // typeof operator
-console.log(typeof 100+'100');
-console.log(typeof(50));
-console.log(typeof "de");
-console.log(typeof(de));
-console.log(typeof fr);
+console.log(typeof 100+'100'); // "number"
+console.log(typeof(50)); // "number"
+console.log(typeof "de"); // "string"
+console.log(typeof(de)); // "string"
+console.log(typeof fr); // "number"
 console.log(typeof 10n); // "bigint"
 console.log(typeof Symbol("id")); // "symbol"
 console.log(typeof Math); // "object"
 console.log(typeof Math.trunc()); // "function"
 
 /*
-null (js bug)
+null: object*
 
-> null is "nothing" something doesn't exist, It is something that does not exist at all. It is not equivalent to an empty string ("") or 0, it is simply nothing. In an example of a tissue roll:
-	- If the roll is available and there are tissues in it, this is really valuable
-	- But if the roll is available, but there are no tissues, then here it is with zero
-	- If the “cartoon” roll does not exist, this is considered null
+> null is "nothing" something doesn't exist, It is something that does not exist at all. It is not equivalent to an empty string ("") or 0, it is simply nothing. An example of a tissue roll:
+	>> If the roll is available and there are tissues in it, this is really valuable
+	>> But if the roll is available, but there are no tissues, then here it is with zero
+	>> If the “cartoon” roll does not exist, this is considered null
 
-> We can consider it bug because type of it is object not null
+> We can consider it a bug because the type of it is an object not null
 
 > The null does not come from anywhere
-	- developer himself is the one who sets this null value inside a variable like this (var isExist = null) a place has been reserved for this value, but the type of value has not been specified
-	- you can create a function with return null yourself
-	- a return for a built-in function or method as a match (xyz. match(/[A-Z]/);) - this would be null
-	- trying to use the DOM node that does not exist yet
+	>> developer himself is the one who sets this null value inside a variable like this (var isExist = null) a place has been reserved for this value, but the type of value has not been specified
+	>> you can create a function with a return null yourself
+	>> a return for a built-in function or method as a match (xyz. match(/[A-Z]/);) - this would be null
+	>> trying to use the DOM node that does not exist yet
 */
 
-// usually whenever we get something from the user interface, for example, from an input field, it usually always is a string.
+// Usually whenever we get something from the user interface, for example, from an input field, it usually always is a string.
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /*
 variables
 
-> variable is reference to a specific location at the memory that stores data, A variable is a “named storage” for data
+> variable is reference to a specific location at the memory that stores data, A variable is a “named storage” for data.
 
 > var/let/const => variable keywords
 
-> variable name/identifier naming conventions and rules => can start only with [letter, underscore, $] and can contain them, not take much more 255 character, and it is case-sensitive, can not contain special character, and it preferred to be descriptive (Variables should be named in a way that allows us to easily understand what’s inside them). Variable naming is one of the most important and complex skills in programming. A quick glance at variable names can reveal which code was written by a beginner versus an experienced developer.
-Some good-to-follow rules are:
-	- Use human-readable names like userName or shoppingCart.
-	- Stay away from abbreviations or short names like a, b, c, unless you really know what you’re doing.
-	- Make names maximally descriptive and concise. Examples of bad names are data and value. Such names say nothing. It’s only okay to use them if the context of the code makes it exceptionally obvious which data or value the variable is referencing.
-	- Agree on terms within your team and in your own mind. If a site visitor is called a “user” then we should name related variables currentUser or newUser instead of currentVisitor or newManInTown.
+> variable name/identifier naming conventions and rules => can start only with [letter, underscore, $] and can contain them, not take much more than 255 characters, and it is case-sensitive, can not contain special characters, and it preferred to be descriptive (Variables should be named in a way that allows us to easily understand what’s inside them).
 
 > There are two limitations on variable names in JavaScript:
-	- The name must contain only letters, digits, or the symbols $ and _.
-	- The first character must not be a digit.
+	>> The name must contain only letters, digits, or the symbols $ and _.
+	>> The first character must not be a digit.
 
-> can declare variable without variable keyword in non-strict mode. but this is not the best practice because the value override issue and because js create such variables in global scope instead of block scope which probably produce errors in our program
+> can declare a variable without a variable keyword in non-strict mode. but this is not the best practice because of the value override issue and because js creates such variables in global scope instead of block scope which probably produce errors in our program.
 
-> there are reserved words for javascript you can not use it for variable identifier as [var | if | return | name | ....]. it also recommended to not use word name to naming a variable
-* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords
+> There are reserved words for javascript you can not use them for variable identifiers as [var | if | return | name | ....]. it also recommended to not use the word 'name' to name a variable
+	>> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords
 
-> it is not recommended to name variable with word with uppercase letter by the first like this
-	let Person; // OOP
+> It is not recommended to name variables with words with uppercase letters by the first like this:
+	let Person; // because it is reserved for classes in javascript
 
 > Uppercase constants
-There is a widespread practice to use constants as aliases for difficult-to-remember values that are known prior to execution. Such constants are named using capital letters and underscores. For instance, let’s make constants for colors in so-called “web” (hexadecimal) format:
+There is a widespread practice to use constants as aliases for difficult-to-remember values that are known prior to execution. Such constants are named using capital letters and underscores. For instance, let’s make constants for colors in the so-called “web” (hexadecimal) format:
 	const COLOR_RED = "#F00";
 	const COLOR_GREEN = "#0F0";
 	const COLOR_BLUE = "#00F";
@@ -573,7 +507,7 @@ There is a widespread practice to use constants as aliases for difficult-to-reme
 	alert(color); // #FF7F00
 Benefits: COLOR_ORANGE is much easier to remember than "#FF7F00". It is much easier to mistype "#FF7F00" than COLOR_ORANGE. When reading the code, COLOR_ORANGE is much more meaningful than #FF7F00
 When should we use capitals for a constant and when should we name it normally? Let’s make that clear.
-	Being a “constant” just means that a variable’s value never changes. But there are constants that are known prior to execution (like a hexadecimal value for red) and there are constants that are calculated in run-time, during the execution, but do not change after their initial assignment. For instance: const pageLoadTime =  // time taken by a webpage to load; The value of pageLoadTime is not known prior to the page load, so it’s named normally. But it’s still a constant because it doesn’t change after assignment. In other words, capital-named constants are only used as aliases for “hard-coded” values.
+	Being a “constant” just means that a variable’s value never changes. But there are constants that are known prior to execution (like a hexadecimal value for red) and there are constants that are calculated in run-time, during the execution, but do not change after their initial assignment. For instance: const pageLoadTime =  // time taken by a webpage to load; The value of pageLoadTime is not known prior to the page load, so it’s named normally. But it’s still a constant because it doesn’t change after the assignment. In other words, capital-named constants are only used as aliases for “hard-coded” values.
 */
 
 /* variable declaration */
@@ -591,8 +525,8 @@ alert(x1+y1+z1);
 
 // multiline style
 let x2 = 10,
-	y2 = 20,
-	z2 = 30;
+		y2 = 20,
+		z2 = 30;
 alert(x2+y2+z2);
 
 // “comma-first” style
@@ -601,56 +535,56 @@ let x4 = 'John'
 	, z4 = 'Hello';
 alert(x4+y4+z4);
 
-// one line style
+// one-line style
 let x3 = 10, y3 = 20, z3 = 30;
 alert(x3+y3+z3);
 
 // copy variable value to another variable
 let hello = 'Hello world!';
 let message;
-// copy 'Hello world' from hello into message
+// copy 'Hello world' from hello into the message
 message = hello;
-// now two variables hold the same data
+// Now two variables hold the same data
 alert(hello); // Hello world!
 alert(message); // Hello world!
 
-// Non-Latin letters are allowed, but not recommended: It is possible to use any language, including cyrillic letters, Chinese logo-grams and so on, Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we’re writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
+// Non-Latin letters are allowed, but not recommended: It is possible to use any language, including Cyrillic letters, Chinese logograms, and so on, Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we’re writing a small script, it may have a long life ahead. People from other countries may need to read it sometime.
 let имя = '...';
 let 我 = '...';
 
-// there is two ways to declare variables
-	// 1. initial variable then define it
+// There is two ways to declare variables
+	// 1. Initial variable then define it
 	let first; // variable initializing
 	first = 100; // defining the value of the variable
-	// 2. initial and define variable in one step (best practice)
+	// 2. Initial and define the variable in one step (best practice)
 	let second = 100;
 
-// Assignment = returns a value: The fact of = being an operator, not a “magical” language construct has an interesting implication. All operators in JavaScript return a value. That’s obvious for + and -, but also true for =. The call x = value writes the value into x and then returns it.
-let a33 = 1;
-let b222 = 2;
-let c11 = 3 - (a33 = b222 + 1);
-alert(a33); // 3
-alert(c11); // 0
+// Assignment [=] returns a value: The fact of = being an operator, not a “magical” language construct has an interesting implication. All operators in JavaScript return a value. That’s obvious for + and -, but also true for =. The call x = value writes the value into x and then returns it.
+let V = 1;
+let C = 2;
+let U = 3 - (V = C + 1);
+alert(V); // 3
+alert(U); // 0
 
 /* Chaining assignments */
 
-// example 1
-let y78;
-let x78 = y78 = 10;
-let y36;
-let x36 = (y36 = 10);
-console.log(x78); // 10
-console.log(x36); // 10
-console.log(y78); // 10
-console.log(y36); // 10
+// Example 1
+let O;
+let P = O = 10;
+let M;
+let F = (M = 10);
+console.log(P); // 10
+console.log(F); // 10
+console.log(O); // 10
+console.log(M); // 10
 
-// example 2
-let a11, b22, c33;
-a11 = b22 = c33 = 2 + 2;
-alert(a11); // 4
-alert(b22); // 4
-alert(c33); // 4
-// Chained assignments evaluate from right to left. First, the rightmost expression 2 + 2 is evaluated and then assigned to the variables on the left: c, b and a. At the end, all the variables share a single value. Once again, for the purposes of readability it’s better to split such code into few lines:
+// Example 2
+let Q, I, N;
+Q = I = N = 2 + 2;
+alert(Q); // 4
+alert(I); // 4
+alert(N); // 4
+// Chained assignments evaluate from right to left. First, the rightmost expression 2 + 2 is evaluated and then assigned to the variables on the left: c, b, and a. At the end, all the variables share a single value. Once again, for the purposes of readability, it’s better to split such code into a few lines:
 c = 2 + 2;
 b = c;
 a = c;
@@ -666,12 +600,12 @@ num = 5; // error: num is not defined
 
 // reassign(mutate) and redeclare variables
 var ieee = 2;
-var ieee = 3; // the value will be change to (3) - redeclare variable + reassign value (mutate the variable)
+var ieee = 3; // the value will be changed to (3) - redeclare variable + reassign value (mutate the variable)
 console.log(ieee); // print (3)
-ieee = 4; // the value will be change to (4) - reassign value (mutate the variable)
+ieee = 4; // the value will be changed to (4) - reassign value (mutate the variable)
 console.log(ieee); // print (4)
 
-// ID of an html element considered as a global variable: <div id="foot">toto</div>;
+// ID of an HTML element considered as a global variable: <div id="foot">toto</div>;
 console.log(foot); // print the HTML element with id foot <div id="foot">toto</div>
 console.log(typeof foot); // object
 foot.innerHTML = "hello"; // change the innerHTML of the HTML element with id foot from "toto" to "hello"
@@ -680,8 +614,8 @@ foot.innerHTML = "hello"; // change the innerHTML of the HTML element with id fo
 Functional languages
 
 It’s interesting to note that there exist so-called pure functional programming languages, such as Haskell, that forbid changing variable values. In such languages, once the value is stored “in the box”, it’s there forever. If we need to store something else, the language forces us to create a new box (declare a new variable). We can’t reuse the old one. Though it may seem a little odd at first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation confers certain benefits.
-* pure functional programming languages: https://en.wikipedia.org/wiki/Purely_functional_programming
-* Haskell: https://en.wikipedia.org/wiki/Haskell
+	>> Pure functional programming languages: https://en.wikipedia.org/wiki/Purely_functional_programming
+	>> Haskell: https://en.wikipedia.org/wiki/Haskell
 */
 
 /*
@@ -693,23 +627,23 @@ var - let - const
 	let x = 10;
 	x = 20; // This is allowed
 
-> const used to declare variables that are meant to be read-only, meaning they cannot be reassigned later. and it can not declare const without assign value to it (error) that is mean that const is immutable
+> const is used to declare variables that are meant to be read-only, meaning they cannot be reassigned later. and it can not declare const without assigning value to it (error) is mean that const is immutable
 	const y = 10;
 	y = 20; // This would cause an error
 	const x; // This would cause an error
 
-> One important thing to note is that const does not mean that the value of the variable cannot change. For example, if you declare an array or object with const, you can still modify the contents of the array or object with methods. what we can not do is to actually replace the entire const Array. only const primitive values are immutable. But an Array is not a primitive value. And so we can actually always change it, so we can mutate it. And it works this way because of the way that JavaScript stores things in memory.
+> One important thing to note is that const does not mean that the value of the variable cannot change. For example, if you declare an array or object with const, you can still modify the contents of the array or object with methods. what we can not do is actually replace the entire const Array. only const primitive values are immutable. But an Array is not a primitive value. And so we can actually always change it, so we can mutate it. And it works this way because of the way that JavaScript stores things in memory.
 	const arr = [1, 2, 3];
 	arr.push(4); // This is allowed
 	arr = [5, 6, 7]; // This would cause an error
 
-> Well, as a best practice for writing clean code, I always recommend to use const by default and let only when you are really sure that the variable needs to change at some point in the future. The reason for this is that it's a good practice to have as little variable mutations or variable changes as possible because changing variables introduces a potential to create bugs. So, basically errors in your code.
+> Well, as a best practice for writing clean code, I always recommend using const by default and let only when you are really sure that the variable needs to change at some point in the future. The reason for this is that it's a good practice to have as few variable mutations or variable changes as possible because changing variables introduces a potential to create bugs. So, basic errors in your code.
 
 > comparing var and let and const
-	- redeclare: var can be redeclare but let and const can not be redeclare (error)
+	- redeclare: var can be redeclared but let and const can not redeclare (error)
 	- access before declaration: var will be undefined but let and const will represent an error because they are not initialized yet
-	- variable scope drama: var is scoped in window object and can be accessed anywhere in the window object.
-	- block or function scope: explained later
+	- variable scope drama: var is scoped in the window object and can be accessed anywhere in the window object.
+	- block or function scope: explained later.
 */
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -717,7 +651,7 @@ var - let - const
 /*
 Escape Sequences
 
-'\' escape character - In JavaScript, an escape sequence is a combination of characters that represents a special character. Escape sequences are used in strings to represent characters that cannot be typed directly
+'\' escape character - In JavaScript, an escape sequence is a combination of characters that represents a special character. Escape sequences are used in strings to represent characters that cannot be typed directly.
 
 \0	Null character
 \b	Backspace
@@ -747,7 +681,7 @@ world"
 ); // print hello other world in one line - escape newline - line continue
 // console.log("hello
 // other
-// world"); // error - js can not render newline in string
+// world"); // error - js can not render newline(line-breaks) in string
 console.log("Elzero\nWeb\nSchool"); // print Elzero Web School - three lines
 console.log("hello \n world"); // print hello world - two lines
 console.log("hello \t world"); // print hello   world - tab
@@ -779,10 +713,10 @@ Let’s meet the features of JavaScript operators that are beyond school arithme
 	let s = "my" + "string";
 	alert(s); // mystring
 Note that if any of the operands is a string, then the other one is converted to a string too. For example:
-	alert( '1' + 2 ); // "12"
-	alert( 2 + '1' ); // "21"
+	alert('1' + 2); // "12"
+	alert(2 + '1'); // "21"
 See, it doesn’t matter whether the first operand is a string or the second one. Here’s a more complex example:
-	alert(2 + 2 + '1' ); // "41" and not "221"
+	alert(2 + 2 + '1'); // "41" and not "221"
 Here, operators work one after another. The first + sums two numbers, so it returns 4, then the next + adds the string 1 to it, so it’s like 4 + '1' = '41'.
 	alert('1' + 2 + 2); // "122" and not "14"
 Here, the first operand is a string, the compiler treats the other two operands as strings too. The 2 gets concatenated to '1', so it’s like '1' + 2 = "12" and "12" + 2 = "122".
@@ -845,7 +779,7 @@ console.log(myFstName + " " + myLstNAme + ' "" ' + "<br>" + mAge + " " + myCount
 console.log(myFstName + " " + myLstNAme + "\n" + mAge + " " + myCountry); // print Amr Abdelghani 29 Egypt - two lines
 
 /*
-ES6 Template Literals - `${}` - building string [ basically a template literal can assemble multiple pieces into one final string]
+ES6 Template Literals - `${}` - building string [basically a template literal can assemble multiple pieces into one final string]
 
 > Template literals in JavaScript are called so because they allow you to define strings (or templates) that can contain placeholders, which are then replaced with values at runtime. These placeholders are denoted by the use of backticks (`) instead of the traditional single quotes ('') or double quotes ("") used for defining strings.
 
@@ -853,7 +787,7 @@ ES6 Template Literals - `${}` - building string [ basically a template literal c
 */
 
 // example 1
-alert( "the result is ${1 + 2}" ); // the result is ${1 + 2} (double quotes do nothing)
+alert("the result is ${1 + 2}"); // the result is ${1 + 2} (double quotes do nothing)
 
 // example 2
 let a = "Amr";
@@ -888,11 +822,11 @@ let n = "Amr";
 let yyy = 29;
 let e = `
 	<div class="card">
-			<div class="card-body">
-					<h1>${n}</h1>
-					<h2>${yyy}</h2>
-					<p>${yyy + 1}</p>
-			</div>
+		<div class="card-body">
+			<h1>${n}</h1>
+			<h2>${yyy}</h2>
+			<p>${yyy + 1}</p>
+		</div>
 	</div>
 `;
 document.write(e);
@@ -921,9 +855,9 @@ var eee =
 
 // example 5
 let name = "Ilya";
-alert( `hello ${1}` ); // hello 1
-alert( `hello ${"name"}` ); // hello name
-alert( `hello ${name}` ); // hello Ilya
+alert(`hello ${1}`); // hello 1
+alert(`hello ${"name"}`); // hello name
+alert(`hello ${name}`); // hello Ilya
 
 /*
 Doing Concatenation Instead of Addition
@@ -2537,6 +2471,23 @@ function fruitProcessor(apples, oranges) {
 fruitProcessor(5, 0); // log to the console => (5, 0)
 const appleJuice = fruitProcessor(5, 0); // log to the console => (5, 0) and store value of juice var in the appleJuice var
 console.log(appleJuice); // log to the console => (5, 0) and Juice with 5 apples and 0 oranges.
+
+// example 7 - IIFE
+(function () {
+	console.log("This will never run again");
+})();
+(function (name) {
+	console.log(`Hello ${name}`);
+})("Osama");
+/*
+IIFE stands for Immediately Invoked Function Expression. It is a common pattern used in JavaScript to create a function and execute it immediately. This pattern helps create a local scope for variables and avoid polluting the global scope.
+
+The main advantage of using an IIFE is that it encapsulates variables and functions within its own scope. This way, any variables or function declarations inside the IIFE do not interfere with other variables or functions outside of it. It helps prevent naming collisions and promotes better code organization.
+
+IIFEs are often used to create modules or to provide private encapsulation for certain code snippets. They are also frequently used in older JavaScript code or when working in environments that do not support modern JavaScript features like modules or block-scoped variables (prior to the introduction of let and const).
+
+It's worth mentioning that with the introduction of modules in ES6, the use of IIFEs has become less common. Modules provide a built-in mechanism for encapsulation and scoping, making IIFEs less necessary in modern JavaScript development.
+*/
 
 // Return
 
